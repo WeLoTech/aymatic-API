@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell: cURL
+  - javascript
 
 toc_footers:
   - <a href='https://www.aymatic.com'>Contact us for a Developer Key</a>
@@ -16,12 +17,12 @@ search: true
 
 # Introduction
 
-Welcome to the aymatic API! You can use our API to access aymatic API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the aymatic API! You can use our API to access aymatic API endpoints, which can mainly create and update videos.
 
 We have language bindings in Shell (cURL)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 
-# Authentication
+# Authentiion
 
 > To authorize, use this code:
 
@@ -40,7 +41,7 @@ let api = aymatic.authorize('YOUR_KEY');
 
 > Make sure to replace `YOUR_KEY` with your API key.
 
-aymatic uses API keys to allow access to the API. You can register a new aymatic API key at our [developer portal](http://example.com/developers).
+aymatic uses API keys to allow access to the API. You can get a new aymatic API key in your [profile settings](https://app.aymatic.com/#/user-settings).
 
 aymatic expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
@@ -50,13 +51,13 @@ aymatic expects for the API key to be included in all API requests to the server
 You must replace <code>YOUR_KEY</code> with your personal API key.
 </aside>
 
-# Kittens
+# videos
 
-## Get All Kittens
+## Get All videos
 
 
 ```shell
-curl "http://example.com/api/kittens"
+curl "https://app.aymatic.com/api/v1/videos"
   -H "Authorization: YOUR_KEY"
 ```
 
@@ -64,7 +65,7 @@ curl "http://example.com/api/kittens"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let kittens = api.kittens.get();
+let videos = api.videos.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -88,28 +89,28 @@ let kittens = api.kittens.get();
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all videos.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://app.aymatic.com/v1/videos`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
 include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+available | true | If set to false, the result will include videos that have already been adopted.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — a happy Video is an authenticated Video!
 </aside>
 
-## Get a Specific Kitten
+## Get a Specific Video
 
 
 ```shell
-curl "http://example.com/api/kittens/2"
+curl "https://app.aymatic.com/api/v1/videos/2"
   -H "Authorization: YOUR_KEY"
 ```
 
@@ -117,7 +118,7 @@ curl "http://example.com/api/kittens/2"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let max = api.kittens.get(2);
+let max = api.videos.get(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -132,25 +133,25 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific Video.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://app.aymatic.com/api/v1/videos/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the Video to retrieve
 
-## Delete a Specific Kitten
+## Delete a Specific Video
 
 
 ```shell
-curl "http://example.com/api/kittens/2"
+curl "https://app.aymatic.com/api/v1/videos/2"
   -X DELETE
   -H "Authorization: YOUR_KEY"
 ```
@@ -159,7 +160,7 @@ curl "http://example.com/api/kittens/2"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let max = api.kittens.delete(2);
+let max = api.videos.delete(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -171,15 +172,15 @@ let max = api.kittens.delete(2);
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint deletes a specific Video.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`DELETE https://app.aymatic.com/api/v1/videos/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the Video to delete
 
