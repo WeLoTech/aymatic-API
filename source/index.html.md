@@ -56,7 +56,8 @@ videoID looks something like this: "1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83f
 
 # videos
 
-## Get All videos
+
+## Get All or One Video(s)
 
 
 ```shell
@@ -99,13 +100,14 @@ Parameter | Description
 videoID | If defined, the result will be the data from that specific video. Otherwise, the result will be all videos you own.
 
 <aside class="success">
-Remember — a happy Video is an authenticated Video!
+Remember — a happy video is an authenticated video!
 </aside>
 <aside class="notice">
 videoID looks something like this: "1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904"
 </aside>
 
-## Delete a Specific Video
+
+## Delete a Video
 
 
 ```shell
@@ -130,7 +132,7 @@ let max = api.videos.delete(videoID);
 }
 ```
 
-This endpoint deletes a specific Video.
+This endpoint deletes a specific video.
 
 ### HTTP Request
 
@@ -142,7 +144,8 @@ Parameter | Description
 --------- | -----------
 videoID | The ID of the video to delete
 
-## Update a Specific Video
+
+## Update a Video
 
 This endpoint updates a specific video.
 
@@ -154,8 +157,13 @@ This endpoint updates a specific video.
 
 Parameter | Description
 --------- | -----------
-videoID | The ID of the Video to delete
+videoID | The ID of the video to delete
+
+### Request body parameters
+Parameter | Description
+--------- | -----------
 data | The json that holds the information needed to update the video.
+
 
 ## Create a New Video
 
@@ -163,13 +171,282 @@ This endpoint creates a new video.
 
 ### HTTP Request
 
-`POST https://app.aymatic.com/api/v1/videos`
+`POST https://app.aymatic.com/api/v1/videos/{projectID}`
 
-### Query Parameters
+### Path parameters
 
 Parameter | Description
 --------- | -----------
-data | The json that holds the information needed to update the video.
+projectID | The ID of the project to add the video to.
+
+### Request body parameters
+Parameter | Description
+--------- | -----------
+data | The json that holds the information needed to create the video.
+
+
+## Render a Video
+
+This endpoint renders a video.
+
+### HTTP Request
+
+`POST https://app.aymatic.com/api/v1/videos/{videoID}/render`
+
+### Path parameters
+
+Parameter | Description
+--------- | -----------
+videoID | The ID of the video to render
+
+
+## Publish a Video
+
+This endpoint publishes a video.
+
+### HTTP Request
+
+`POST https://app.aymatic.com/api/v1/videos/{videoID}/publish`
+
+### Path parameters
+
+Parameter | Description
+--------- | -----------
+videoID | The ID of the video to render
+
+### Query parameters
+
+Parameter | Description
+--------- | -----------
+provider | What platform you want to publish your video to. e.g. 'facebook', 'instagram', etc...
+
+
+#Campaigns
+
+## Get All or One Campaign(s)
+
+
+```shell
+curl "https://app.aymatic.com/api/v1/campaigns?campaignID"
+  -H "Authorization: YOUR_KEY"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let campaigns = api.campaigns.get(campaignID);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  
+]
+```
+
+This endpoint retrieves all or one campaign(s).
+
+### HTTP Request
+
+`GET https://app.aymatic.com/v1/campaigns/{campaignID}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+campaignID | If defined, the result will be the data from that specific campaign. Otherwise, the result will be all campaigns you own.
+
+<aside class="notice">
+campaignID looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f00dba2faaf3169857f782f69"
+</aside>
+
+
+## Delete a Campaign
+
+
+```shell
+curl "https://app.aymatic.com/api/v1/campaigns/{campaignID}"
+  -X DELETE
+  -H "Authorization: YOUR_KEY"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let max = api.campaigns.delete(campaignID);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": campaignID,
+  "deleted" : ":("
+}
+```
+
+This endpoint deletes a specific campaign.
+
+### HTTP Request
+
+`DELETE https://app.aymatic.com/api/v1/campaigns/{campaignID}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+campaignID | The ID of the campaign to delete
+
+
+## Update a Campaign
+
+This endpoint updates a specific campaign.
+
+### HTTP Request
+
+`PUT https://app.aymatic.com/api/v1/campaigns/{campaignID}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+campaignID | The ID of the Campaign to delete
+
+### Request body parameters
+Parameter | Description
+--------- | -----------
+data | The json that holds the information needed to update the campaign.
+
+
+## Create a New Campaign
+
+This endpoint creates a new campaign.
+
+### HTTP Request
+
+`POST https://app.aymatic.com/api/v1/campaigns`
+
+### Request body parameters
+Parameter | Description
+--------- | -----------
+data | The json that holds the information needed to create the campaign.
+
+
+#Projects
+
+## Get All or One Project(s)
+
+
+```shell
+curl "https://app.aymatic.com/api/v1/projects?projectID"
+  -H "Authorization: YOUR_KEY"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let projects = api.projects.get(projectID);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  
+]
+```
+
+This endpoint retrieves all or one project(s).
+
+### HTTP Request
+
+`GET https://app.aymatic.com/v1/projects/{projectID}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+projectID | If defined, the result will be the data from that specific project. Otherwise, the result will be all projects you own.
+
+<aside class="notice">
+projectID looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae905247d46829a84151ca4f20d6e"
+</aside>
+
+
+## Delete a Project
+
+
+```shell
+curl "https://app.aymatic.com/api/v1/projects/{projectID}"
+  -X DELETE
+  -H "Authorization: YOUR_KEY"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let max = api.projects.delete(projectID);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": projectID,
+  "deleted" : ":("
+}
+```
+
+This endpoint deletes a specific project.
+
+### HTTP Request
+
+`DELETE https://app.aymatic.com/api/v1/projects/{projectID}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+projectID | The ID of the project to delete
+
+
+## Update a Project
+
+This endpoint updates a specific project.
+
+### HTTP Request
+
+`PUT https://app.aymatic.com/api/v1/projects/{projectID}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+projectID | The ID of the project to delete
+
+### Request body parameters
+Parameter | Description
+--------- | -----------
+data | The json that holds the information needed to update the project.
+
+
+## Create a New Project
+
+This endpoint creates a new project.
+
+### HTTP Request
+
+`POST https://app.aymatic.com/api/v1/projects`
+
+### Request body parameters
+Parameter | Description
+--------- | -----------
+data | The json that holds the information needed to create the project.
 
 
 
