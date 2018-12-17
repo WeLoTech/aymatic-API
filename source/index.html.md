@@ -120,15 +120,15 @@ curl "https://app.aymatic.com/api/v1/videos/{videoID}"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let max = api.videos.delete(videoID);
+let max = api.videos.delete('1cd58e507b3e3d8bb8a9b2a3a5...');
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": videoID,
-  "deleted" : ":("
+  "id": '1cd58e507b3e3d8bb8a9b2a3a5...',
+  "deleted" : "true"
 }
 ```
 
@@ -146,6 +146,41 @@ videoID | The ID of the video to delete
 
 
 ## Update a Video
+
+```shell
+curl -X PUT -H "Content-Type: application/json" \
+--data '{
+"videoColor": "#3493B1",
+"music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
+"theme": "template2",
+"logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
+"thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
+}' \
+"https://app.aymatic.com/api/v1/videos/1cd58e507b3e3d8bb8a9b2a3a5..."
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let body = {
+"videoColor": "#3493B1",
+"music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
+"theme": "template2",
+"logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
+"thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
+}
+let max = api.videos.update('1cd58e507b3e3d8bb8a9b2a3a5...', body);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "1cd58e507b3e3d8bb8a9b2a3a5...",
+  "updated" : "true"
+}
+```
 
 This endpoint updates a specific video.
 
