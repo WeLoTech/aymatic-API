@@ -22,7 +22,7 @@ Welcome to the aymatic API! You can use our API to access aymatic API endpoints,
 We have language bindings in Shell (cURL)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 
-# Authentiion
+# Authentication
 
 > To authorize, use this code:
 
@@ -50,11 +50,8 @@ aymatic expects for the API key to be included in all API requests to the server
 <aside class="notice">
 You must replace <code>YOUR_KEY</code> with your personal API key.
 </aside>
-<aside class="notice">
-videoID looks something like this: "1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904"
-</aside>
 
-# videos
+# Videos
 
 
 ## Get All or One Video(s)
@@ -103,7 +100,7 @@ videoID | If defined, the result will be the data from that specific video. Othe
 Remember — a happy video is an authenticated video!
 </aside>
 <aside class="notice">
-videoID looks something like this: "1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904"
+<code>videoID</code> looks something like this: "1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904"
 </aside>
 
 
@@ -127,7 +124,7 @@ let max = api.videos.delete("videoID");
 
 ```json
 {
-  "id": "videoID",
+  "videoID": "videoID",
   "deleted" : "true"
 }
 ```
@@ -177,7 +174,7 @@ let max = api.videos.update("videoID", body);
 
 ```json
 {
-  "id": "videoID",
+  "videoID": "videoID",
   "updated" : "true"
 }
 ```
@@ -211,7 +208,7 @@ curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
 "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
 }' \
-"https://app.aymatic.com/api/v1/videos/{projectID}"
+"https://app.aymatic.com/api/v1/videos/{projectKey}"
 ```
 
 ```javascript
@@ -225,15 +222,15 @@ let body = {
 "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
 "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
 }
-let max = api.videos.update("projectID", body);
+let max = api.videos.create("projectKey", body);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": "newVideoID",
-  "projectID": "projectID"
+  "videoID": "newVideoID",
+  "projectKey": "projectKey"
 }
 ```
 
@@ -241,13 +238,13 @@ This endpoint creates a new video.
 
 ### HTTP Request
 
-`POST https://app.aymatic.com/api/v1/videos/{projectID}`
+`POST https://app.aymatic.com/api/v1/videos/{projectKey}`
 
 ### Path parameters
 
 Parameter | Description
 --------- | -----------
-projectID | The ID of the project to add the video to.
+projectKey | The ID of the project to add the video to.
 
 ### Request body parameters
 Parameter | Description
@@ -273,7 +270,7 @@ let max = api.videos.render("videoID");
 
 ```json
 {
-  "id": "videoID",
+  "videoID": "videoID",
   "wasAlreadyRendered": false,
   "isRendered": true
 }
@@ -310,7 +307,7 @@ let max = api.videos.publish("videoID", "provider");
 
 ```json
 {
-  "id": "videoID",
+  "videoID": "videoID",
   "wasAlreadyRendered": false,
   "isRendered": true
 }
@@ -341,7 +338,7 @@ provider | What platform you want to publish your video to. e.g. 'facebook', 'in
 
 
 ```shell
-curl "https://app.aymatic.com/api/v1/campaigns?campaignID"
+curl "https://app.aymatic.com/api/v1/campaigns?campaignKey"
   -H "Authorization: YOUR_KEY"
 ```
 
@@ -349,31 +346,56 @@ curl "https://app.aymatic.com/api/v1/campaigns?campaignID"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let campaigns = api.campaigns.get(campaignID);
+let campaigns = api.campaigns.get("campaignKey");
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this if the campaignKey was defined as "61239a2b7877197e107b4a0ceb053288d77b9a243e57a46d66478d6bedd4b366":
 
 ```json
-[
-  
-]
+{
+  "hasPushed" : false,
+  "key" : "61239a2b7877197e107b4a0ceb053288d77b9a243e57a46d66478d6bedd4b366",
+  "playerControls" : [ false, false, false, false, false, false ],
+  "projects" : {
+    "40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846" : {
+      "FBdata" : {
+        "pageID" : "",
+        "pageName" : "",
+        "postID" : ""
+      },
+      "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+      "key" : "40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846",
+      "templateName" : "Cardealer-1-1",
+      "title" : "Project 1",
+      "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5",
+      "views" : 0
+    }
+  },
+  "title" : "Campaign 9",
+  "type" : "blog",
+  "videoColor" : "#ffffff",
+  "videoIcon" : "",
+  "videoPlayend" : 0,
+  "videoPlaystart" : 0
+}
 ```
+
+<notice>If campaignKey is not defined, the result will be all your campaigns.</notice>
 
 This endpoint retrieves all or one campaign(s).
 
 ### HTTP Request
 
-`GET https://app.aymatic.com/v1/campaigns/{campaignID}`
+`GET https://app.aymatic.com/v1/campaigns/{campaignKey}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | -----------
-campaignID | If defined, the result will be the data from that specific campaign. Otherwise, the result will be all campaigns you own.
+campaignKey | If defined, the result will be the data from that specific campaign. Otherwise, the result will be all campaigns you own.
 
 <aside class="notice">
-campaignID looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f00dba2faaf3169857f782f69"
+campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f00dba2faaf3169857f782f69"
 </aside>
 
 
@@ -381,24 +403,24 @@ campaignID looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f0
 
 
 ```shell
-curl "https://app.aymatic.com/api/v1/campaigns/{campaignID}"
+curl "https://app.aymatic.com/api/v1/campaigns/{campaignKey}"
   -X DELETE
-  -H "Authorization: YOUR_KEY"
+  -H "Authorization: "YOUR_KEY"
 ```
 
 ```javascript
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let max = api.campaigns.delete(campaignID);
+let max = api.campaigns.delete(campaignKey);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": campaignID,
-  "deleted" : ":("
+  "campaignKey": campaignKey,
+  "deleted" : "true"
 }
 ```
 
@@ -406,28 +428,65 @@ This endpoint deletes a specific campaign.
 
 ### HTTP Request
 
-`DELETE https://app.aymatic.com/api/v1/campaigns/{campaignID}`
+`DELETE https://app.aymatic.com/api/v1/campaigns/{campaignKey}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | -----------
-campaignID | The ID of the campaign to delete
+campaignKey | The ID of the campaign to delete
 
 
 ## Update a Campaign
+
+```shell
+curl -X PUT -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
+--data '{
+"title": "This is a new wacky title!",
+"playerControls": [false,false,false,true,false,true],
+"videoColor": "#72D85E"
+"videoIcon": "",
+"videoPlayend": 3000,
+"videoPlaystart": 1000
+}' \
+"https://app.aymatic.com/api/v1/campaigns/{campaignKey}"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let body = {
+"title": "This is a new wacky title!",
+"playerControls": [false,false,false,true,false,true],
+"videoColor": "#72D85E"
+"videoIcon": "",
+"videoPlayend": 3000,
+"videoPlaystart": 1000
+}
+let max = api.campaigns.update("campaignKey", body);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "campaignKey": "campaignKey",
+  "updated" : "true"
+}
+```
 
 This endpoint updates a specific campaign.
 
 ### HTTP Request
 
-`PUT https://app.aymatic.com/api/v1/campaigns/{campaignID}`
+`PUT https://app.aymatic.com/api/v1/campaigns/{campaignKey}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | -----------
-campaignID | The ID of the Campaign to delete
+campaignKey | The ID of the Campaign to delete
 
 ### Request body parameters
 Parameter | Description
@@ -436,6 +495,46 @@ data | The json that holds the information needed to update the campaign.
 
 
 ## Create a New Campaign
+
+```shell
+curl -X POST -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
+--data '{
+{
+"type": "blog"
+"title": "This is a new wacky title!",
+"playerControls": [false,false,false,true,false,true],
+"videoColor": "#72D85E"
+"videoIcon": "",
+"videoPlayend": 3000,
+"videoPlaystart": 1000
+}
+}' \
+"https://app.aymatic.com/api/v1/campaigns"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let body = {
+"type": "blog"
+"title": "This is a wacky title!",
+"playerControls": [false,true,false,false,false,true],
+"videoColor": "#ffe25E"
+"videoIcon": "",
+"videoPlayend": 5000,
+"videoPlaystart": 2000
+}
+let max = api.campains.create(body);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "campaignKey": "newCampaignKey"
+}
+```
 
 This endpoint creates a new campaign.
 
@@ -455,7 +554,7 @@ data | The json that holds the information needed to create the campaign.
 
 
 ```shell
-curl "https://app.aymatic.com/api/v1/projects?projectID"
+curl "https://app.aymatic.com/api/v1/projects/{projectKey}"
   -H "Authorization: YOUR_KEY"
 ```
 
@@ -463,14 +562,27 @@ curl "https://app.aymatic.com/api/v1/projects?projectID"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let projects = api.projects.get(projectID);
+let projects = api.projects.get("projectKey");
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  
+  {
+  "FBdata" : {
+    "pageID" : "",
+    "pageName" : "",
+    "postID" : ""
+  },
+  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+  "key" : "40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846",
+  "templateName" : "Cardealer-1-1",
+  "title" : "Project 1",
+  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5",
+  "views" : 0
+  }
+
 ]
 ```
 
@@ -478,16 +590,16 @@ This endpoint retrieves all or one project(s).
 
 ### HTTP Request
 
-`GET https://app.aymatic.com/v1/projects/{projectID}`
+`GET https://app.aymatic.com/v1/projects/{projectKey}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | -----------
-projectID | If defined, the result will be the data from that specific project. Otherwise, the result will be all projects you own.
+projectKey | If defined, the result will be the data from that specific project. Otherwise, the result will be all projects you own.
 
 <aside class="notice">
-projectID looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae905247d46829a84151ca4f20d6e"
+projectKey looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae905247d46829a84151ca4f20d6e"
 </aside>
 
 
@@ -495,7 +607,7 @@ projectID looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae90524
 
 
 ```shell
-curl "https://app.aymatic.com/api/v1/projects/{projectID}"
+curl "https://app.aymatic.com/api/v1/projects/{projectKey}"
   -X DELETE
   -H "Authorization: YOUR_KEY"
 ```
@@ -504,15 +616,15 @@ curl "https://app.aymatic.com/api/v1/projects/{projectID}"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let max = api.projects.delete(projectID);
+let max = api.projects.delete(projectKey);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": projectID,
-  "deleted" : ":("
+  "projectKey": projectKey,
+  "deleted" : "true"
 }
 ```
 
@@ -520,28 +632,61 @@ This endpoint deletes a specific project.
 
 ### HTTP Request
 
-`DELETE https://app.aymatic.com/api/v1/projects/{projectID}`
+`DELETE https://app.aymatic.com/api/v1/projects/{projectKey}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | -----------
-projectID | The ID of the project to delete
+projectKey | The ID of the project to delete
 
 
 ## Update a Project
+
+```shell
+curl -X PUT -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
+--data '{
+  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+  "templateName" : "Cardealer-1-1",
+  "title" : "Project 1",
+  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
+}' \
+"https://app.aymatic.com/api/v1/projects/{projectKey}"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let body = {
+ "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+  "templateName" : "Cardealer-1-1",
+  "title" : "Project 1",
+  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
+}
+let max = api.projects.update("projectKey", body);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "projectKey": "projectKey",
+  "updated" : "true"
+}
+```
 
 This endpoint updates a specific project.
 
 ### HTTP Request
 
-`PUT https://app.aymatic.com/api/v1/projects/{projectID}`
+`PUT https://app.aymatic.com/api/v1/projects/{projectKey}`
 
 ### Path Parameters
 
 Parameter | Description
 --------- | -----------
-projectID | The ID of the project to delete
+projectKey | The ID of the project to delete
 
 ### Request body parameters
 Parameter | Description
@@ -550,6 +695,38 @@ data | The json that holds the information needed to update the project.
 
 
 ## Create a New Project
+
+```shell
+curl -X POST -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
+--data '{
+  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+  "templateName" : "Cardealer-1-1",
+  "title" : "Project 1",
+  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
+}' \
+"https://app.aymatic.com/api/v1/projects/{projectKey}"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let body = {
+ "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+  "templateName" : "Cardealer-1-1",
+  "title" : "Project 1",
+  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
+}
+let max = api.projects.create("projectKey", body);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "projectKey": "projectKey",
+}
+```
 
 This endpoint creates a new project.
 
