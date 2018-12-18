@@ -69,18 +69,19 @@ let api = aymatic.authorize('YOUR_KEY');
 let videos = api.videos.get(videoID);
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this if a video is specified:
 
 ```json
 [
-  {"url":"https://www.aymatic.com/",
-"keywords":["create emotional advertising videos from your content","easily explained","Supported on all platforms","Video marketing as easy and personal as a conversation.","Video Automation is not for everyon","you want to expand your existing online presence and stand out with video marketing, we offer the right solution.","Grow companies with videos"],
-"images":["PROJECT_icon-G_S.4.png","PROJECT_icon-G_S.4.png","PROJECT_Aymatic-Logo-new.svg","PROJECT_avatar_user_3_1531505021-300x300.jpg",
-"PROJECT_avatar_user_4_1532249024.png","PROJECT_Illustration-aymatic-erklaert.svg","PROJECT_facebook-1.svg"],
-"music":"premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
-"imagelinks":["https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_3_1531505021-300x300.jpg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_4_1532249024.png","https://www.aymatic.com/wp-content/uploads/2018/09/Illustration-aymatic-erklaert.svg","https://www.aymatic.com/wp-content/uploads/2018/09/facebook-1.svg"],
-"logo":"http://localhost:8080/src/uploadedImages/",
-"colors":[[[0,0,0,1],[1,1,1,1]],[[0,0,0,1],[1,1,1,1]],[[0,0,0,1],[1,1,1,1]]]}
+  {
+  "url":"https://www.aymatic.com/",
+  "keywords":["create emotional advertising videos from your content","easily explained","Supported on all platforms","Video marketing as easy and personal as a conversation.","Video Automation is not for everyon","you want to expand your existing online presence and stand out with video marketing, we offer the right solution.","Grow companies with videos"],
+  "images":["PROJECT_icon-G_S.4.png","PROJECT_icon-G_S.4.png","PROJECT_Aymatic-Logo-new.svg","PROJECT_avatar_user_3_1531505021-300x300.jpg",
+  "PROJECT_avatar_user_4_1532249024.png","PROJECT_Illustration-aymatic-erklaert.svg","PROJECT_facebook-1.svg"],
+  "music":"premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
+  "imagelinks":["https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_3_1531505021-300x300.jpg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_4_1532249024.png","https://www.aymatic.com/wp-content/uploads/2018/09/Illustration-aymatic-erklaert.svg","https://www.aymatic.com/wp-content/uploads/2018/09/facebook-1.svg"],
+  "logo":"http://localhost:8080/src/uploadedImages/",
+  "colors":[[[0,0,0,1],[1,1,1,1]],[[0,0,0,1],[1,1,1,1]],[[0,0,0,1],[1,1,1,1]]]}
 ]
 ```
 
@@ -147,11 +148,11 @@ videoID | The ID of the video to delete
 ```shell
 curl -X PUT -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 --data '{
-"videoColor": "#3493B1",
-"music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
-"theme": "template2",
-"logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
-"thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
+  "videoColor": "#3493B1",
+  "music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
+  "theme": "template2",
+  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
+  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
 }' \
 "https://app.aymatic.com/api/v1/videos/{videoID}"
 ```
@@ -161,11 +162,11 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
-"videoColor": "#3493B1",
-"music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
-"theme": "template2",
-"logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
-"thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
+  "videoColor": "#3493B1",
+  "music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
+  "theme": "template2",
+  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
+  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
 }
 let max = api.videos.update("videoID", body);
 ```
@@ -202,11 +203,11 @@ data | The json that holds the information needed to update the video.
 ```shell
 curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 --data '{
-"theme": "blog",
-"template": "template0"
-"videoColor": "#4054B2",
-"imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
-"textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
+  "theme": "blog",
+  "template": "template0",
+  "videoColor": "#4054B2",
+  "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
+  "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
 }' \
 "https://app.aymatic.com/api/v1/videos/{projectKey}"
 ```
@@ -216,11 +217,11 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
-"theme": "blog",
-"template": "template0"
-"videoColor": "#4054B2",
-"imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
-"textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
+  "theme": "blog",
+  "template": "template0",
+  "videoColor": "#4054B2",
+  "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
+  "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
 }
 let max = api.videos.create("projectKey", body);
 ```
@@ -295,9 +296,9 @@ videoID | The ID of the video to render
 
 curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 --data '{
-   "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
-   "fbUserId": "YOUR_FACEBOOK_USER_ID",
-   "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
+  "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
+  "fbUserId": "YOUR_FACEBOOK_USER_ID",
+  "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
 }' \
 "https://app.aymatic.com/api/v1/videos/{videoID}/publishFB"
 ```
@@ -307,9 +308,9 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
-   "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
-   "fbUserId": "YOUR_FACEBOOK_USER_ID",
-   "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
+  "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
+  "fbUserId": "YOUR_FACEBOOK_USER_ID",
+  "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
 };
 let max = api.videos.publishFB("videoID", body);
 ```
@@ -383,8 +384,8 @@ let campaigns = api.campaigns.get("campaignKey");
   "type" : "blog",
   "videoColor" : "#ffffff",
   "videoIcon" : "",
-  "videoPlayend" : 0,
-  "videoPlaystart" : 0
+  "videoPlayend" : "0",
+  "videoPlaystart" : "0"
 }
 ```
 
@@ -450,12 +451,12 @@ campaignKey | The ID of the campaign to delete
 ```shell
 curl -X PUT -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
 --data '{
-"title": "This is a new wacky title!",
-"playerControls": [false,false,false,true,false,true],
-"videoColor": "#72D85E"
-"videoIcon": "",
-"videoPlayend": 3000,
-"videoPlaystart": 1000
+  "title": "This is a new wacky title!",
+  "playerControls": [false,false,false,true,false,true],
+  "videoColor": "#72D85E",
+  "videoIcon": "",
+  "videoPlayend": "3000",
+  "videoPlaystart": "1000"
 }' \
 "https://app.aymatic.com/api/v1/campaigns/{campaignKey}"
 ```
@@ -465,12 +466,12 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
-"title": "This is a new wacky title!",
-"playerControls": [false,false,false,true,false,true],
-"videoColor": "#72D85E"
-"videoIcon": "",
-"videoPlayend": 3000,
-"videoPlaystart": 1000
+  "title": "This is a new wacky title!",
+  "playerControls": [false,false,false,true,false,true],
+  "videoColor": "#72D85E",
+  "videoIcon": "",
+  "videoPlayend": "3000",
+  "videoPlaystart": "1000"
 }
 let max = api.campaigns.update("campaignKey", body);
 ```
@@ -508,13 +509,13 @@ data | The json that holds the information needed to update the campaign.
 curl -X POST -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
 --data '{
 {
-"type": "blog"
-"title": "This is a new wacky title!",
-"playerControls": [false,false,false,true,false,true],
-"videoColor": "#72D85E"
-"videoIcon": "",
-"videoPlayend": 3000,
-"videoPlaystart": 1000
+  "type": "blog"
+  "title": "This is a new wacky title!",
+  "playerControls": [false,false,false,true,false,true],
+  "videoColor": "#72D85E",
+  "videoIcon": "",
+  "videoPlayend": "3000",
+  "videoPlaystart": "1000"
 }
 }' \
 "https://app.aymatic.com/api/v1/campaigns"
@@ -525,13 +526,13 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
-"type": "blog"
-"title": "This is a wacky title!",
-"playerControls": [false,true,false,false,false,true],
-"videoColor": "#ffe25E"
-"videoIcon": "",
-"videoPlayend": 5000,
-"videoPlaystart": 2000
+  "type": "blog"
+  "title": "This is a wacky title!",
+  "playerControls": [false,true,false,false,false,true],
+  "videoColor": "#ffe25E",
+  "videoIcon": "",
+  "videoPlayend": "5000",
+  "videoPlaystart": "2000"
 }
 let max = api.campains.create(body);
 ```
@@ -573,7 +574,7 @@ let api = aymatic.authorize('YOUR_KEY');
 let projects = api.projects.get("projectKey");
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this if a project is specified:
 
 ```json
 [
@@ -667,7 +668,7 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
- "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
   "templateName" : "Cardealer-1-1",
   "title" : "Project 1",
   "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
@@ -720,7 +721,7 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
- "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
+  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
   "templateName" : "Cardealer-1-1",
   "title" : "Project 1",
   "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
@@ -774,26 +775,26 @@ let max = api.templates.get("theme");
 ```json
 {
   
-    "template2" : {
-      "description" : "Aymatic's handgefertigte Fahrzeug Video-Vorlage",
-      "id" : 2,
-      "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto Reifen", "Auto innen", "Auto detail 1", "Auto vorne", "Logo oder Mitarbeiter" ],
-      "isCustom" : false,
-      "isPremium" : false,
-      "name" : "Vorlage Auto Günther",
-      "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch", "Preis", "Kontakt" ],
-      "type" : "Cardealer-1-1"
-    },
-    "template3" : {
-      "description" : "Aymatics's \"Steinhart und Kraus\"-Vorlage",
-      "id" : 3,
-      "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto innen", "Auto innen detail 1", "Auto innen detail 2", "Auto seitlich" ],
-      "isCustom" : false,
-      "isPremium" : false,
-      "name" : "Vorlage S&K Autohaus",
-      "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch (ohne L/100)", "Preis", "Kontakt" ],
-      "type" : "Cardealer-2-3"
-    }
+  "template2" : {
+    "description" : "Aymatic's handgefertigte Fahrzeug Video-Vorlage",
+    "id" : 2,
+    "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto Reifen", "Auto innen", "Auto detail 1", "Auto vorne", "Logo oder Mitarbeiter" ],
+    "isCustom" : false,
+    "isPremium" : false,
+    "name" : "Vorlage Auto Günther",
+    "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch", "Preis", "Kontakt" ],
+    "type" : "Cardealer-1-1"
+  },
+  "template3" : {
+    "description" : "Aymatics's \"Steinhart und Kraus\"-Vorlage",
+    "id" : 3,
+    "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto innen", "Auto innen detail 1", "Auto innen detail 2", "Auto seitlich" ],
+    "isCustom" : false,
+    "isPremium" : false,
+    "name" : "Vorlage S&K Autohaus",
+    "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch (ohne L/100)", "Preis", "Kontakt" ],
+    "type" : "Cardealer-2-3"
+  }
   
   
 }
