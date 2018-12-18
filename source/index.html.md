@@ -120,14 +120,14 @@ curl "https://app.aymatic.com/api/v1/videos/{videoID}"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let max = api.videos.delete('1cd58e507b3e3d8bb8a9b2a3a5...');
+let max = api.videos.delete("videoID");
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": '1cd58e507b3e3d8bb8a9b2a3a5...',
+  "id": "videoID",
   "deleted" : "true"
 }
 ```
@@ -148,7 +148,7 @@ videoID | The ID of the video to delete
 ## Update a Video
 
 ```shell
-curl -X PUT -H "Content-Type: application/json" \
+curl -X PUT -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 --data '{
 "videoColor": "#3493B1",
 "music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
@@ -156,7 +156,7 @@ curl -X PUT -H "Content-Type: application/json" \
 "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
 "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
 }' \
-"https://app.aymatic.com/api/v1/videos/1cd58e507b3e3d8bb8a9b2a3a5..."
+"https://app.aymatic.com/api/v1/videos/{videoID}"
 ```
 
 ```javascript
@@ -170,14 +170,14 @@ let body = {
 "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
 "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
 }
-let max = api.videos.update('1cd58e507b3e3d8bb8a9b2a3a5...', body);
+let max = api.videos.update("videoID", body);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": "1cd58e507b3e3d8bb8a9b2a3a5...",
+  "id": "videoID",
   "updated" : "true"
 }
 ```
@@ -202,6 +202,41 @@ data | The json that holds the information needed to update the video.
 
 ## Create a New Video
 
+```shell
+curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
+--data '{
+"theme": "blog",
+"template": "template0"
+"videoColor": "#4054B2",
+"imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
+"textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
+}' \
+"https://app.aymatic.com/api/v1/videos/{projectID}"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let body = {
+"theme": "blog",
+"template": "template0"
+"videoColor": "#4054B2",
+"imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
+"textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
+}
+let max = api.videos.update("projectID", body);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "newVideoID",
+  "projectID": "projectID"
+}
+```
+
 This endpoint creates a new video.
 
 ### HTTP Request
@@ -222,6 +257,28 @@ data | The json that holds the information needed to create the video.
 
 ## Render a Video
 
+```shell
+curl -X POST -H "https://app.aymatic.com/api/v1/videos/{videoID}/render"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+
+let max = api.videos.render("videoID");
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "videoID",
+  "wasAlreadyRendered": false,
+  "isRendered": true
+}
+```
+
 This endpoint renders a video.
 
 ### HTTP Request
@@ -237,11 +294,33 @@ videoID | The ID of the video to render
 
 ## Publish a Video
 
+```shell
+curl -X POST -H "https://app.aymatic.com/api/v1/videos/{videoID}/publish?provider"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+
+let max = api.videos.publish("videoID", "provider");
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "videoID",
+  "wasAlreadyRendered": false,
+  "isRendered": true
+}
+```
+
 This endpoint publishes a video.
 
 ### HTTP Request
 
-`POST https://app.aymatic.com/api/v1/videos/{videoID}/publish`
+`POST https://app.aymatic.com/api/v1/videos/{videoID}/publish?provider`
 
 ### Path parameters
 
