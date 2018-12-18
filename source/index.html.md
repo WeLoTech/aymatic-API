@@ -272,7 +272,8 @@ let max = api.videos.render("videoID");
 {
   "videoID": "videoID",
   "wasAlreadyRendered": false,
-  "isRendered": true
+  "isRendered": true,
+  "videoDir": "app.aymatic.com/{videoID}.mp4"
 }
 ```
 
@@ -288,19 +289,29 @@ Parameter | Description
 --------- | -----------
 videoID | The ID of the video to render
 
+#Publishing
 
-## Publish a Video
+## Publish a Video to Facebook Page
 
-```shell
-curl -X POST -H "https://app.aymatic.com/api/v1/videos/{videoID}/publish?provider"
+curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
+--data '{
+   "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
+   "fbUserId": "YOUR_FACEBOOK_USER_ID",
+   "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
+}' \
+"https://app.aymatic.com/api/v1/videos/{videoID}/publishFB"
 ```
 
 ```javascript
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-
-let max = api.videos.publish("videoID", "provider");
+let body = {
+   "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
+   "fbUserId": "YOUR_FACEBOOK_USER_ID",
+   "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
+};
+let max = api.videos.publishFB("videoID", body);
 ```
 
 > The above command returns JSON structured like this:
@@ -308,8 +319,7 @@ let max = api.videos.publish("videoID", "provider");
 ```json
 {
   "videoID": "videoID",
-  "wasAlreadyRendered": false,
-  "isRendered": true
+  "postID": "postID"
 }
 ```
 
@@ -317,20 +327,18 @@ This endpoint publishes a video.
 
 ### HTTP Request
 
-`POST https://app.aymatic.com/api/v1/videos/{videoID}/publish?provider`
+`POST https://app.aymatic.com/api/v1/videos/{videoID}/publishFB`
 
 ### Path parameters
 
 Parameter | Description
 --------- | -----------
-videoID | The ID of the video to render
+videoID | The ID of the video to publish
 
-### Query parameters
-
+### Request body parameters
 Parameter | Description
 --------- | -----------
-provider | What platform you want to publish your video to. e.g. 'facebook', 'instagram', etc...
-
+data | The json that holds the information needed to create the video.
 
 #Campaigns
 
@@ -704,7 +712,7 @@ curl -X POST -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
   "title" : "Project 1",
   "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
 }' \
-"https://app.aymatic.com/api/v1/projects/{projectKey}"
+"https://app.aymatic.com/api/v1/projects/{campaignKey}"
 ```
 
 ```javascript
@@ -717,14 +725,14 @@ let body = {
   "title" : "Project 1",
   "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
 }
-let max = api.projects.create("projectKey", body);
+let max = api.projects.create("campaignKey", body);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "projectKey": "projectKey",
+  "projectKey": "newProjectKey",
 }
 ```
 
@@ -732,12 +740,121 @@ This endpoint creates a new project.
 
 ### HTTP Request
 
-`POST https://app.aymatic.com/api/v1/projects`
+`POST https://app.aymatic.com/api/v1/projects/{campaignKey}`
 
+### Query parameters
+Parameter | Description
+--------- | -----------
+campaignKey | The ID of the campaign at which the project should be created in.
 ### Request body parameters
 Parameter | Description
 --------- | -----------
 data | The json that holds the information needed to create the project.
+
+
+#Templates
+
+## Get Templates
+
+```shell
+curl "https://app.aymatic.com/api/v1/templates/{theme}"
+  -X GET
+  -H "Authorization: YOUR_KEY"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let max = api.templates.get("theme");
+```
+
+> The above command returns JSON structured like this if theme is defined to be "blog":
+
+```json
+{
+  
+    "template2" : {
+      "description" : "Aymatic's handgefertigte Fahrzeug Video-Vorlage",
+      "id" : 2,
+      "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto Reifen", "Auto innen", "Auto detail 1", "Auto vorne", "Logo oder Mitarbeiter" ],
+      "isCustom" : false,
+      "isPremium" : false,
+      "name" : "Vorlage Auto Günther",
+      "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch", "Preis", "Kontakt" ],
+      "type" : "Cardealer-1-1"
+    },
+    "template3" : {
+      "description" : "Aymatics's \"Steinhart und Kraus\"-Vorlage",
+      "id" : 3,
+      "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto innen", "Auto innen detail 1", "Auto innen detail 2", "Auto seitlich" ],
+      "isCustom" : false,
+      "isPremium" : false,
+      "name" : "Vorlage S&K Autohaus",
+      "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch (ohne L/100)", "Preis", "Kontakt" ],
+      "type" : "Cardealer-2-3"
+    }
+  
+  
+}
+
+```
+
+This endpoint returns the templates that you can use.
+
+<notice>Notice how only the templates that are not premium get returned.
+This user does not have premium status and therefore is not allowed to view the premium templates.</notice>
+
+### HTTP Request
+
+`GET https://app.aymatic.com/api/v1/templates/{theme}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+theme | The type of templates you want. Blog, Email, or Product. If not defined, the result will be all of them.
+
+
+#Insights
+
+## Get Video Insights
+
+
+```shell
+curl "https://app.aymatic.com/api/v1/insights/{videoID}"
+  -H "Authorization: YOUR_KEY"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let insights = api.insights.get("videoID");
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "views" : 0,
+   "likes" : 0
+}
+```
+
+This endpoint retrieves insights about a specific video.
+
+### HTTP Request
+
+`GET https://app.aymatic.com/v1/insights/{videoID}`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+videoID | The ID of the video to gain insights from.
+
+
 
 
 
