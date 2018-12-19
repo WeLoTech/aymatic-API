@@ -21,6 +21,18 @@ Welcome to the aymatic API! You can use our API to access aymatic API endpoints,
 
 We have language bindings in Shell (cURL)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
+The first thing you probably will want to do is create a video. Here is a brief overview of our structure and what you will need to do first.
+
+Campaign -> Videos
+
+1. Create a campaign
+2. Create a video in that campaign.
+
+<aside class="warning">You cannot create a video unless you have a campaign to put it in.</aside>
+
+AUTO means that you can define the variable, but if you don't, we will choose it for you.
+
+NECESSARY means that you do need to define the variable, otherwise, it will throw an error.
 
 # Authentication
 
@@ -74,6 +86,19 @@ let videos = api.videos.get(videoID);
 ```json
 [
   {
+  "videoUUID":"1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904",
+  "videoColor":"#ffffff",
+  "title":"My first video",
+  "template":"Cardealer-1-1",
+  "facebook":{
+    postID:""
+  }
+  "instagram"{
+    ...
+  }
+  "youtube"{
+    ...
+  }
   "url":"https://www.aymatic.com/",
   "keywords":["create emotional advertising videos from your content","easily explained","Supported on all platforms","Video marketing as easy and personal as a conversation.","Video Automation is not for everyon","you want to expand your existing online presence and stand out with video marketing, we offer the right solution.","Grow companies with videos"],
   "images":["PROJECT_icon-G_S.4.png","PROJECT_icon-G_S.4.png","PROJECT_Aymatic-Logo-new.svg","PROJECT_avatar_user_3_1531505021-300x300.jpg",
@@ -81,7 +106,7 @@ let videos = api.videos.get(videoID);
   "music":"premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
   "imagelinks":["https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_3_1531505021-300x300.jpg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_4_1532249024.png","https://www.aymatic.com/wp-content/uploads/2018/09/Illustration-aymatic-erklaert.svg","https://www.aymatic.com/wp-content/uploads/2018/09/facebook-1.svg"],
   "logo":"http://localhost:8080/src/uploadedImages/",
-  "colors":[[[0,0,0,1],[1,1,1,1]],[[0,0,0,1],[1,1,1,1]],[[0,0,0,1],[1,1,1,1]]]}
+  }
 ]
 ```
 
@@ -126,7 +151,7 @@ let max = api.videos.delete("videoID");
 ```json
 {
   "videoID": "videoID",
-  "deleted" : "true"
+  "successful" : "true"
 }
 ```
 
@@ -149,8 +174,9 @@ videoID | The ID of the video to delete
 curl -X PUT -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 --data '{
   "videoColor": "#3493B1",
-  "music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
-  "theme": "template2",
+  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
+  "title":"My second video",
+  "template":"Cardealer-1-1",
   "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
   "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
 }' \
@@ -163,8 +189,9 @@ const aymatic = require('aymatic');
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
   "videoColor": "#3493B1",
-  "music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
-  "theme": "template2",
+  "title":"My second video",
+  "template":"Cardealer-1-1",
+  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
   "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
   "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
 }
@@ -176,7 +203,7 @@ let max = api.videos.update("videoID", body);
 ```json
 {
   "videoID": "videoID",
-  "updated" : "true"
+  "successful" : "true"
 }
 ```
 
@@ -195,21 +222,30 @@ videoID | The ID of the video to delete
 ### Request body parameters
 Parameter | Description
 --------- | -----------
-data | The json that holds the information needed to update the video.
+videoColor | The color that the video's UI should be.
+title | The name of the video.
+template | How the video uses the images. 
+music | The song that plays when the video starts.
+logo | The video's designated logo. Used for branding.
+thumbnail | The image that appears when the video hasn't been played yet.
 
+<notice>Anything not added to the body of the request will not be modified. You don't need to change everything.</notice>
 
 ## Create a New Video
 
 ```shell
 curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 --data '{
-  "theme": "blog",
+  "title": "My new video",
   "template": "template0",
   "videoColor": "#4054B2",
+  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
+  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
+  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
   "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
   "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
 }' \
-"https://app.aymatic.com/api/v1/videos/{projectKey}"
+"https://app.aymatic.com/api/v1/videos/{campaignKey}"
 ```
 
 ```javascript
@@ -217,13 +253,16 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
-  "theme": "blog",
+  "title": "My new video",
   "template": "template0",
   "videoColor": "#4054B2",
+  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
+  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
+  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
   "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
   "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
 }
-let max = api.videos.create("projectKey", body);
+let max = api.videos.create("campaignKey", body);
 ```
 
 > The above command returns JSON structured like this:
@@ -231,7 +270,8 @@ let max = api.videos.create("projectKey", body);
 ```json
 {
   "videoID": "newVideoID",
-  "projectKey": "projectKey"
+  "campaignKey": "campaignKey",
+  "successful": true
 }
 ```
 
@@ -239,19 +279,26 @@ This endpoint creates a new video.
 
 ### HTTP Request
 
-`POST https://app.aymatic.com/api/v1/videos/{projectKey}`
+`POST https://app.aymatic.com/api/v1/videos/{campaignKey}`
 
 ### Path parameters
 
 Parameter | Description
 --------- | -----------
-projectKey | The ID of the project to add the video to.
+campaignKey | The ID of the campaign to add the video to.
 
 ### Request body parameters
-Parameter | Description
---------- | -----------
-data | The json that holds the information needed to create the video.
+Parameter | Default | Description
+--------- | ------- | -----------
+videoColor | #4054B2 | The color that the video's UI should be.
+title | NECESSARY | The name of the video.
+template | NECESSARY | How the video uses the images. 
+music | AUTO | The song that plays when the video starts.
+thumbnail | AUTO | The image that appears when the video hasn't been played yet.
+imageSteps | NECESSARY | The images that you want the video to use.
+textSteps | NECESSARY | The text that you want the video to use.
 
+<aside class="warning">You need to make sure that the textSteps and imageSteps abide by the rules of the template you are using. If the template calls for 5 textSteps you need to give exactly 5 textSteps. Otherwise, it will throw an error.</aside>
 
 ## Render a Video
 
@@ -292,27 +339,18 @@ videoID | The ID of the video to render
 
 #Publishing
 
-## Publish a Video to Facebook Page
+##Publish a Video to Facebook
 
-curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
---data '{
-  "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
-  "fbUserId": "YOUR_FACEBOOK_USER_ID",
-  "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
-}' \
-"https://app.aymatic.com/api/v1/videos/{videoID}/publishFB"
+```shell
+curl -X POST -H "Authorization: YOUR_KEY" "https://app.aymatic.com/api/v1/videos/{videoID}/publish/facebook"
 ```
 
 ```javascript
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let body = {
-  "fbPageID": "YOUR_FACEBOOK_PAGE_ID",
-  "fbUserId": "YOUR_FACEBOOK_USER_ID",
-  "pageToken": "YOUR_FACEBOOK_PAGE_TOKEN"
-};
-let max = api.videos.publishFB("videoID", body);
+
+let max = api.videos.publish.facebook("videoID");
 ```
 
 > The above command returns JSON structured like this:
@@ -320,15 +358,22 @@ let max = api.videos.publishFB("videoID", body);
 ```json
 {
   "videoID": "videoID",
-  "postID": "postID"
+  "successful": true,
+  "postData":{
+
+  }
 }
 ```
 
-This endpoint publishes a video.
+This endpoint publishes a video to facebook.
+
+<notice>Post data will just be whatever your provider sends back after posting.</notice>
+
+<aside class="warning">You need to be authorized and logged in before making any publications. Please log in for your provider on our website.</aside>
 
 ### HTTP Request
 
-`POST https://app.aymatic.com/api/v1/videos/{videoID}/publishFB`
+`POST https://app.aymatic.com/api/v1/videos/{videoID}/publish/facebook`
 
 ### Path parameters
 
@@ -336,18 +381,54 @@ Parameter | Description
 --------- | -----------
 videoID | The ID of the video to publish
 
-### Request body parameters
+##Publish a Video to Youtube
+
+```shell
+curl -X POST -H "Authorization: YOUR_KEY" "https://app.aymatic.com/api/v1/videos/{videoID}/publish/youtube"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+
+let max = api.videos.publish.youtube("videoID");
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "videoID": "videoID",
+  "successful": true,
+  "postData":{
+
+  }
+}
+```
+
+This endpoint publishes a video to youtube.
+
+<notice>Post data will just be whatever your provider sends back after posting.</notice>
+
+<aside class="warning">You need to be authorized and logged in before making any publications. Please log in for your provider on our website.</aside>
+
+### HTTP Request
+
+`POST https://app.aymatic.com/api/v1/videos/{videoID}/publish/youtube`
+
+### Path parameters
+
 Parameter | Description
 --------- | -----------
-data | The json that holds the information needed to create the video.
+videoID | The ID of the video to publish
 
 #Campaigns
 
 ## Get All or One Campaign(s)
 
-
 ```shell
-curl "https://app.aymatic.com/api/v1/campaigns?campaignKey"
+curl "https://app.aymatic.com/api/v1/campaigns/{campaignKey}"
   -H "Authorization: YOUR_KEY"
 ```
 
@@ -362,24 +443,20 @@ let campaigns = api.campaigns.get("campaignKey");
 
 ```json
 {
+  "facebook":{
+    "pageID":""
+  }
+  "instagram":{
+    ...
+  }
+  "youtube":{
+    ...
+  }
+  "platforms":["youtube","facebook"],
+  "videos":["9988f741b8df8339fba9041cd58e507b3e3d8bb8a9b2a3a5baafa2e9e6b661d3", "7b3e3d8bb8a9b2a9988f741b8df8339fba9041cd58e503a5baafa2e9e6b661d3"],
   "hasPushed" : false,
   "key" : "61239a2b7877197e107b4a0ceb053288d77b9a243e57a46d66478d6bedd4b366",
   "playerControls" : [ false, false, false, false, false, false ],
-  "projects" : {
-    "40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846" : {
-      "FBdata" : {
-        "pageID" : "",
-        "pageName" : "",
-        "postID" : ""
-      },
-      "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
-      "key" : "40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846",
-      "templateName" : "Cardealer-1-1",
-      "title" : "Project 1",
-      "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5",
-      "views" : 0
-    }
-  },
   "title" : "Campaign 9",
   "type" : "blog",
   "videoColor" : "#ffffff",
@@ -429,7 +506,7 @@ let max = api.campaigns.delete(campaignKey);
 ```json
 {
   "campaignKey": campaignKey,
-  "deleted" : "true"
+  "successful" : "true"
 }
 ```
 
@@ -451,12 +528,22 @@ campaignKey | The ID of the campaign to delete
 ```shell
 curl -X PUT -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
 --data '{
+  "facebook":{
+    "pageID":""
+  }
+  "instagram":{
+    ...
+  }
+  "youtube":{
+    ...
+  }
   "title": "This is a new wacky title!",
   "playerControls": [false,false,false,true,false,true],
   "videoColor": "#72D85E",
-  "videoIcon": "",
-  "videoPlayend": "3000",
-  "videoPlaystart": "1000"
+  "videoLogo": "",
+  "platforms":["facebook"],
+  "url": "https://www.aymatic.com/",
+  "templates": ["template0","template1","template2"]
 }' \
 "https://app.aymatic.com/api/v1/campaigns/{campaignKey}"
 ```
@@ -466,12 +553,22 @@ const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
 let body = {
+  "facebook":{
+    "pageID":""
+  }
+  "instagram":{
+    ...
+  }
+  "youtube":{
+    ...
+  }
   "title": "This is a new wacky title!",
   "playerControls": [false,false,false,true,false,true],
   "videoColor": "#72D85E",
-  "videoIcon": "",
-  "videoPlayend": "3000",
-  "videoPlaystart": "1000"
+  "videoLogo": "",
+  "platforms":["facebook"],
+  "url": "https://www.aymatic.com/",
+  "templates": ["template0","template1","template2"]
 }
 let max = api.campaigns.update("campaignKey", body);
 ```
@@ -481,7 +578,7 @@ let max = api.campaigns.update("campaignKey", body);
 ```json
 {
   "campaignKey": "campaignKey",
-  "updated" : "true"
+  "successful" : "true"
 }
 ```
 
@@ -500,8 +597,16 @@ campaignKey | The ID of the Campaign to delete
 ### Request body parameters
 Parameter | Description
 --------- | -----------
-data | The json that holds the information needed to update the campaign.
-
+videoColor | The color that the video's UI should be.
+title | The name of the video.
+facebook | The data that is required to know what page you want your videos published to in facebook.
+youtube | The data that is required to know where you want your videos published to in youtube.
+instagram | The data that is required to know where you want you videos published to in instragram.
+platforms | The platforms that you want your videos to automatically be posted to.
+playerControls | The controls the video should have.
+templates | List of ways that the videos should use the images.
+url | The url of your website.
+videoLogo | The logo used for branding on the video.
 
 ## Create a New Campaign
 
@@ -513,9 +618,9 @@ curl -X POST -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
   "title": "This is a new wacky title!",
   "playerControls": [false,false,false,true,false,true],
   "videoColor": "#72D85E",
-  "videoIcon": "",
-  "videoPlayend": "3000",
-  "videoPlaystart": "1000"
+  "videoLogo": "",
+  "url": "https://www.aymatic.com/",
+  "templates": ["template0","template1","template2"]
 }
 }' \
 "https://app.aymatic.com/api/v1/campaigns"
@@ -530,9 +635,9 @@ let body = {
   "title": "This is a wacky title!",
   "playerControls": [false,true,false,false,false,true],
   "videoColor": "#ffe25E",
-  "videoIcon": "",
-  "videoPlayend": "5000",
-  "videoPlaystart": "2000"
+  "videoLogo": "",
+  "url": "https://www.aymatic.com/",
+  "templates": ["template0","template1","template2"]
 }
 let max = api.campains.create(body);
 ```
@@ -541,7 +646,8 @@ let max = api.campains.create(body);
 
 ```json
 {
-  "campaignKey": "newCampaignKey"
+  "campaignKey": "newCampaignKey",
+  "successful": true
 }
 ```
 
@@ -552,213 +658,23 @@ This endpoint creates a new campaign.
 `POST https://app.aymatic.com/api/v1/campaigns`
 
 ### Request body parameters
-Parameter | Description
---------- | -----------
-data | The json that holds the information needed to create the campaign.
+Parameter | Default | Description
+--------- | ------- | -----------
+type | NECESSARY | What kind of video is this? blog, product, or email?
+videoColor | #4054B2 | The color that the video's UI should be.
+title | NECESSARY | The name of the video.
+playerControls | AUTO | The controls the video should have.
+templates | NECESSARY | List of ways that the videos should use the images.
+url | NECESSARY | The url of your website.
+videoLogo | AUTO | The logo used for branding on the video.
 
 
-#Projects
-
-## Get All or One Project(s)
-
-
-```shell
-curl "https://app.aymatic.com/api/v1/projects/{projectKey}"
-  -H "Authorization: YOUR_KEY"
-```
-
-```javascript
-const aymatic = require('aymatic');
-
-let api = aymatic.authorize('YOUR_KEY');
-let projects = api.projects.get("projectKey");
-```
-
-> The above command returns JSON structured like this if a project is specified:
-
-```json
-[
-  {
-  "FBdata" : {
-    "pageID" : "",
-    "pageName" : "",
-    "postID" : ""
-  },
-  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
-  "key" : "40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846",
-  "templateName" : "Cardealer-1-1",
-  "title" : "Project 1",
-  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5",
-  "views" : 0
-  }
-
-]
-```
-
-This endpoint retrieves all or one project(s).
-
-### HTTP Request
-
-`GET https://app.aymatic.com/v1/projects/{projectKey}`
-
-### Path Parameters
-
-Parameter | Description
---------- | -----------
-projectKey | If defined, the result will be the data from that specific project. Otherwise, the result will be all projects you own.
-
-<aside class="notice">
-projectKey looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae905247d46829a84151ca4f20d6e"
-</aside>
-
-
-## Delete a Project
-
-
-```shell
-curl "https://app.aymatic.com/api/v1/projects/{projectKey}"
-  -X DELETE
-  -H "Authorization: YOUR_KEY"
-```
-
-```javascript
-const aymatic = require('aymatic');
-
-let api = aymatic.authorize('YOUR_KEY');
-let max = api.projects.delete(projectKey);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "projectKey": projectKey,
-  "deleted" : "true"
-}
-```
-
-This endpoint deletes a specific project.
-
-### HTTP Request
-
-`DELETE https://app.aymatic.com/api/v1/projects/{projectKey}`
-
-### Path Parameters
-
-Parameter | Description
---------- | -----------
-projectKey | The ID of the project to delete
-
-
-## Update a Project
-
-```shell
-curl -X PUT -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
---data '{
-  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
-  "templateName" : "Cardealer-1-1",
-  "title" : "Project 1",
-  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
-}' \
-"https://app.aymatic.com/api/v1/projects/{projectKey}"
-```
-
-```javascript
-const aymatic = require('aymatic');
-
-let api = aymatic.authorize('YOUR_KEY');
-let body = {
-  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
-  "templateName" : "Cardealer-1-1",
-  "title" : "Project 1",
-  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
-}
-let max = api.projects.update("projectKey", body);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "projectKey": "projectKey",
-  "updated" : "true"
-}
-```
-
-This endpoint updates a specific project.
-
-### HTTP Request
-
-`PUT https://app.aymatic.com/api/v1/projects/{projectKey}`
-
-### Path Parameters
-
-Parameter | Description
---------- | -----------
-projectKey | The ID of the project to delete
-
-### Request body parameters
-Parameter | Description
---------- | -----------
-data | The json that holds the information needed to update the project.
-
-
-## Create a New Project
-
-```shell
-curl -X POST -H "Authorization: "YOUR_KEY", "Content-Type: application/json" \
---data '{
-  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
-  "templateName" : "Cardealer-1-1",
-  "title" : "Project 1",
-  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
-}' \
-"https://app.aymatic.com/api/v1/projects/{campaignKey}"
-```
-
-```javascript
-const aymatic = require('aymatic');
-
-let api = aymatic.authorize('YOUR_KEY');
-let body = {
-  "image" : "https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg",
-  "templateName" : "Cardealer-1-1",
-  "title" : "Project 1",
-  "videoUUID" : "d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"
-}
-let max = api.projects.create("campaignKey", body);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "projectKey": "newProjectKey",
-}
-```
-
-This endpoint creates a new project.
-
-### HTTP Request
-
-`POST https://app.aymatic.com/api/v1/projects/{campaignKey}`
-
-### Query parameters
-Parameter | Description
---------- | -----------
-campaignKey | The ID of the campaign at which the project should be created in.
-### Request body parameters
-Parameter | Description
---------- | -----------
-data | The json that holds the information needed to create the project.
-
-
-#Templates
+#Templates and Music
 
 ## Get Templates
 
 ```shell
-curl "https://app.aymatic.com/api/v1/templates/{theme}"
+curl "https://app.aymatic.com/api/v1/templates/{type}"
   -X GET
   -H "Authorization: YOUR_KEY"
 ```
@@ -767,7 +683,7 @@ curl "https://app.aymatic.com/api/v1/templates/{theme}"
 const aymatic = require('aymatic');
 
 let api = aymatic.authorize('YOUR_KEY');
-let max = api.templates.get("theme");
+let max = api.templates.get("type");
 ```
 
 > The above command returns JSON structured like this if theme is defined to be "blog":
@@ -806,16 +722,37 @@ This endpoint returns the templates that you can use.
 <notice>Notice how only the templates that are not premium get returned.
 This user does not have premium status and therefore is not allowed to view the premium templates.</notice>
 
+## Get Music
+
+```shell
+curl "https://app.aymatic.com/api/v1/music"
+  -X GET
+  -H "Authorization: YOUR_KEY"
+```
+
+```javascript
+const aymatic = require('aymatic');
+
+let api = aymatic.authorize('YOUR_KEY');
+let max = api.music.get();
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "premium" : [ "A Good Mood by Young Rich Pixies.mp3", "A Look Out by Appearing.mp3", "Altitude by Muted.mp3", "Atlas by Ethan Rank - Silent Dreams.mp3" ],
+  "standard" : [ "All_This_Down_Time.mp3", "Big_Sky.mp3", "Friendly Ukulele.mp3", "GoPro Video FREE.mp3", "Higher.mp3", "Indie_Inspiring_Stirring.mp3", "Inspirational Life.mp3", "Inspiring Ambient.mp3", "On_the_Tip.mp3", "Pooka.mp3", "Sweet Ukulele.mp3" ]
+}
+```
+
+This endpoint returns the music that you can use.
+
+<notice>This is a premium user. He is allowed to see the premium songs.</notice>
+
 ### HTTP Request
 
-`GET https://app.aymatic.com/api/v1/templates/{theme}`
-
-### Path Parameters
-
-Parameter | Description
---------- | -----------
-theme | The type of templates you want. Blog, Email, or Product. If not defined, the result will be all of them.
-
+`GET https://app.aymatic.com/api/v1/music`
 
 #Insights
 
@@ -839,7 +776,8 @@ let insights = api.insights.get("videoID");
 ```json
 {
    "views" : 0,
-   "likes" : 0
+   "likes" : 0,
+   "plays" : 0
 }
 ```
 
