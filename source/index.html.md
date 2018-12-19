@@ -89,7 +89,7 @@ let videos = api.videos.get(videoID);
   "videoUUID":"1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904",
   "videoColor":"#ffffff",
   "title":"My first video",
-  "template":"Cardealer-1-1",
+  "template":"Template-name-1-1",
   "facebook":{
     postID:""
   }
@@ -98,14 +98,14 @@ let videos = api.videos.get(videoID);
   }
   "youtube"{
     ...
-  }
+  },
   "url":"https://www.aymatic.com/",
   "keywords":["create emotional advertising videos from your content","easily explained","Supported on all platforms","Video marketing as easy and personal as a conversation.","Video Automation is not for everyon","you want to expand your existing online presence and stand out with video marketing, we offer the right solution.","Grow companies with videos"],
-  "images":["PROJECT_icon-G_S.4.png","PROJECT_icon-G_S.4.png","PROJECT_Aymatic-Logo-new.svg","PROJECT_avatar_user_3_1531505021-300x300.jpg",
-  "PROJECT_avatar_user_4_1532249024.png","PROJECT_Illustration-aymatic-erklaert.svg","PROJECT_facebook-1.svg"],
+  "images":["PROJECT_icon-G_S.4.png","PROJECT_icon-G_S.4.png","PROJECT_Aymatic-Logo-new.png","PROJECT_avatar_user_3_1531505021-300x300.jpg",
+  "PROJECT_avatar_user_4_1532249024.png","PROJECT_Illustration-aymatic-erklaert.png","PROJECT_facebook-1.png"],
   "music":"premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
-  "imagelinks":["https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png","https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_3_1531505021-300x300.jpg","https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_4_1532249024.png","https://www.aymatic.com/wp-content/uploads/2018/09/Illustration-aymatic-erklaert.svg","https://www.aymatic.com/wp-content/uploads/2018/09/facebook-1.svg"],
-  "logo":"http://localhost:8080/src/uploadedImages/",
+  "imagelinks":["https://www.aymatic.com/data/8/09/icon-G_S.4.png","https://www.aymatic.com/data/8/09/icon-G_S.4.png","https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png","https://www.aymatic.com/data/8/07/avatar_user_3_1531505021-300x300.jpg","https://www.aymatic.com/data/8/07/avatar_user_4_1532249024.png","https://www.aymatic.com/data/8/09/Illustration-aymatic-erklaert.png","https://www.aymatic.com/data/8/09/facebook-1.png"],
+  "logo":"https://www.aymatic.com/data/8/09/Logo.png",
   }
 ]
 ```
@@ -114,7 +114,7 @@ This endpoint retrieves all or one video(s).
 
 ### HTTP Request
 
-`GET https://app.aymatic.com/v1/videos/{videoID}`
+`GET https://app.aymatic.com/api/v1/videos/{videoID}`
 
 ### Path Parameters
 
@@ -126,7 +126,7 @@ videoID | If defined, the result will be the data from that specific video. Othe
 Remember — a happy video is an authenticated video!
 </aside>
 <aside class="notice">
-<code>videoID</code> looks something like this: "1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904"
+<code>videoID</code> looks something like this: "654hne3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b5576ghj04"
 </aside>
 
 
@@ -174,11 +174,11 @@ videoID | The ID of the video to delete
 curl -X PUT -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
 --data '{
   "videoColor": "#3493B1",
-  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
+  "music": "Song-example-1.mp3",
   "title":"My second video",
-  "template":"Cardealer-1-1",
-  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
-  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
+  "template":"Template-name-1-1",
+  "logo": "https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png",
+  "thumbnail": "https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg"
 }' \
 "https://app.aymatic.com/api/v1/videos/{videoID}"
 ```
@@ -190,10 +190,10 @@ let api = aymatic.authorize('YOUR_KEY');
 let body = {
   "videoColor": "#3493B1",
   "title":"My second video",
-  "template":"Cardealer-1-1",
-  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
-  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
-  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
+  "template":"Template-name-1-1",
+  "music": "Song-example-1.mp3",
+  "logo": "https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png",
+  "thumbnail": "https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg"
 }
 let max = api.videos.update("videoID", body);
 ```
@@ -239,11 +239,11 @@ curl -X POST -H "Authorization: YOUR_KEY", "Content-Type: application/json" \
   "title": "My new video",
   "template": "template0",
   "videoColor": "#4054B2",
-  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
-  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
-  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
-  "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
-  "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
+  "music": "Song-example-1.mp3",
+  "logo": "https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png",
+  "thumbnail": "https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg",
+  "imageSteps": ["https://www.aymatic.com/data//7/03/image-1.jpg","https://www.aymatic.com/data//7/03/image-2.jpg","https://www.aymatic.com/data//7/03/image-3.jpg","https://www.aymatic.com/data//7/03/image-4.jpg","https://www.aymatic.com/data//7/03/image-5.jpg"],
+  "textSteps" : [ "My example text 1", "My example text 2", "My example text 3", "My example text 4", "My example text 5", "My example text 6", "My example text 7" ]
 }' \
 "https://app.aymatic.com/api/v1/videos/{campaignKey}"
 ```
@@ -256,11 +256,11 @@ let body = {
   "title": "My new video",
   "template": "template0",
   "videoColor": "#4054B2",
-  "music": "Kaleidoscope by Ethan Rank - Awaken.mp3",
-  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
-  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
-  "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
-  "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World's funniest joke."]
+  "music": "Song-example-1.mp3",
+  "logo": "https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png",
+  "thumbnail": "https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg"
+  "imageSteps": ["https://www.aymatic.com/data//7/03/image-1.jpg","https://www.aymatic.com/data//7/03/image-2.jpg","https://www.aymatic.com/data//7/03/image-3.jpg","https://www.aymatic.com/data//7/03/image-4.jpg","https://www.aymatic.com/data//7/03/image-5.jpg"],
+  "textSteps" : [ "My example text 1", "My example text 2", "My example text 3", "My example text 4", "My example text 5", "My example text 6", "My example text 7" ]
 }
 let max = api.videos.create("campaignKey", body);
 ```
@@ -472,7 +472,7 @@ This endpoint retrieves all or one campaign(s).
 
 ### HTTP Request
 
-`GET https://app.aymatic.com/v1/campaigns/{campaignKey}`
+`GET https://app.aymatic.com/api/v1/campaigns/{campaignKey}`
 
 ### Path Parameters
 
@@ -692,24 +692,24 @@ let max = api.templates.get("type");
 {
   
   "template2" : {
-    "description" : "Aymatic's handgefertigte Fahrzeug Video-Vorlage",
+    "description" : "Aymatic's Video-Vorlage",
     "id" : 2,
-    "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto Reifen", "Auto innen", "Auto detail 1", "Auto vorne", "Logo oder Mitarbeiter" ],
+    "imageSteps" : [ "Image-Step 1", "Image-Step 2", "Image-Step 3", "Image-Step 4", "Image-Step 5", "Image-Step 6", "Image-Step 7" ],
     "isCustom" : false,
     "isPremium" : false,
-    "name" : "Vorlage Auto Günther",
-    "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch", "Preis", "Kontakt" ],
-    "type" : "Cardealer-1-1"
+    "name" : "Template-name 2",
+    "textSteps" : [ "Text-Step 1", "Text-Step 2", "Text-Step 3", "Text-Step 4", "Text-Step 5", "Text-Step 6", "Text-Step 7" ],
+    "type" : "Template-name-1-1"
   },
   "template3" : {
-    "description" : "Aymatics's \"Steinhart und Kraus\"-Vorlage",
+    "description" : "Aymatics's \"Test\"-Template",
     "id" : 3,
-    "imageSteps" : [ "Auto vorne", "Auto hinten", "Auto innen", "Auto innen detail 1", "Auto innen detail 2", "Auto seitlich" ],
+    "imageSteps" : [ "Image-Step 1", "Image-Step 2", "Image-Step 3", "Image-Step 4", "Image-Step 5", "Image-Step 6", "Image-Step 7" ],
     "isCustom" : false,
     "isPremium" : false,
-    "name" : "Vorlage S&K Autohaus",
-    "textSteps" : [ "Auto Name", "Fahrzeugtyp", "Getriebe", "Motor", "Verbrauch (ohne L/100)", "Preis", "Kontakt" ],
-    "type" : "Cardealer-2-3"
+    "name" : "Template-name 3",
+    "textSteps" : [ "Text-Step 1", "Text-Step 2", "Text-Step 3", "Text-Step 4", "Text-Step 5", "Text-Step 6", "Text-Step 7" ],
+    "type" : "Template-name-2-3"
   }
   
   
@@ -741,8 +741,8 @@ let max = api.music.get();
 
 ```json
 {
-  "premium" : [ "A Good Mood by Young Rich Pixies.mp3", "A Look Out by Appearing.mp3", "Altitude by Muted.mp3", "Atlas by Ethan Rank - Silent Dreams.mp3" ],
-  "standard" : [ "All_This_Down_Time.mp3", "Big_Sky.mp3", "Friendly Ukulele.mp3", "GoPro Video FREE.mp3", "Higher.mp3", "Indie_Inspiring_Stirring.mp3", "Inspirational Life.mp3", "Inspiring Ambient.mp3", "On_the_Tip.mp3", "Pooka.mp3", "Sweet Ukulele.mp3" ]
+  "premium" : [ "Song-example-1.mp3", "Song-example-2.mp3", "Song-example-3.mp3" ],
+  "standard" : [ "Song-example-4.mp3", "Song-example-5.mp3" ]
 }
 ```
 
@@ -785,7 +785,7 @@ This endpoint retrieves insights about a specific video.
 
 ### HTTP Request
 
-`GET https://app.aymatic.com/v1/insights/{videoID}`
+`GET https://app.aymatic.com/api/v1/insights/{videoID}`
 
 ### Path Parameters
 
