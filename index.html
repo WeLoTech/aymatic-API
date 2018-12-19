@@ -249,7 +249,10 @@
             <a href="#publishing" class="toc-h1 toc-link" data-title="Publishing">Publishing</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#publish-a-video-to-facebook-page" class="toc-h2 toc-link" data-title="Publish a Video to Facebook Page">Publish a Video to Facebook Page</a>
+                    <a href="#publish-a-video-to-facebook" class="toc-h2 toc-link" data-title="Publish a Video to Facebook">Publish a Video to Facebook</a>
+                  </li>
+                  <li>
+                    <a href="#publish-a-video-to-youtube" class="toc-h2 toc-link" data-title="Publish a Video to Youtube">Publish a Video to Youtube</a>
                   </li>
               </ul>
           </li>
@@ -271,27 +274,13 @@
               </ul>
           </li>
           <li>
-            <a href="#projects" class="toc-h1 toc-link" data-title="Projects">Projects</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-or-one-project-s" class="toc-h2 toc-link" data-title="Get All or One Project(s)">Get All or One Project(s)</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-project" class="toc-h2 toc-link" data-title="Delete a Project">Delete a Project</a>
-                  </li>
-                  <li>
-                    <a href="#update-a-project" class="toc-h2 toc-link" data-title="Update a Project">Update a Project</a>
-                  </li>
-                  <li>
-                    <a href="#create-a-new-project" class="toc-h2 toc-link" data-title="Create a New Project">Create a New Project</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#templates" class="toc-h1 toc-link" data-title="Templates">Templates</a>
+            <a href="#templates-and-music" class="toc-h1 toc-link" data-title="Templates and Music">Templates and Music</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-templates" class="toc-h2 toc-link" data-title="Get Templates">Get Templates</a>
+                  </li>
+                  <li>
+                    <a href="#get-music" class="toc-h2 toc-link" data-title="Get Music">Get Music</a>
                   </li>
               </ul>
           </li>
@@ -319,6 +308,21 @@
 <p>Welcome to the aymatic API! You can use our API to access aymatic API endpoints, which can mainly create and update videos.</p>
 
 <p>We have language bindings in Shell (cURL)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>The first thing you probably will want to do is create a video. Here is a brief overview of our structure and what you will need to do first.</p>
+
+<p>Campaign -&gt; Videos</p>
+
+<ol>
+<li>Create a campaign</li>
+<li>Create a video in that campaign.</li>
+</ol>
+
+<aside class="warning">You cannot create a video unless you have a campaign to put it in.</aside>
+
+<p>AUTO means that you can define the variable, but if you don&#39;t, we will choose it for you.</p>
+
+<p>NECESSARY means that you do need to define the variable, otherwise, it will throw an error.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -355,19 +359,32 @@ You must replace <code>YOUR_KEY</code> with your personal API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"videoUUID"</span><span class="p">:</span><span class="s2">"1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"videoColor"</span><span class="p">:</span><span class="s2">"#ffffff"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"My first video"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"template"</span><span class="p">:</span><span class="s2">"Template-name-1-1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"facebook"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">postID</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"instagram"</span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"youtube"</span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://www.aymatic.com/"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"keywords"</span><span class="p">:[</span><span class="s2">"create emotional advertising videos from your content"</span><span class="p">,</span><span class="s2">"easily explained"</span><span class="p">,</span><span class="s2">"Supported on all platforms"</span><span class="p">,</span><span class="s2">"Video marketing as easy and personal as a conversation."</span><span class="p">,</span><span class="s2">"Video Automation is not for everyon"</span><span class="p">,</span><span class="s2">"you want to expand your existing online presence and stand out with video marketing, we offer the right solution."</span><span class="p">,</span><span class="s2">"Grow companies with videos"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"images"</span><span class="p">:[</span><span class="s2">"PROJECT_icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"PROJECT_icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"PROJECT_Aymatic-Logo-new.svg"</span><span class="p">,</span><span class="s2">"PROJECT_avatar_user_3_1531505021-300x300.jpg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"PROJECT_avatar_user_4_1532249024.png"</span><span class="p">,</span><span class="s2">"PROJECT_Illustration-aymatic-erklaert.svg"</span><span class="p">,</span><span class="s2">"PROJECT_facebook-1.svg"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:[</span><span class="s2">"PROJECT_icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"PROJECT_icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"PROJECT_Aymatic-Logo-new.png"</span><span class="p">,</span><span class="s2">"PROJECT_avatar_user_3_1531505021-300x300.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"PROJECT_avatar_user_4_1532249024.png"</span><span class="p">,</span><span class="s2">"PROJECT_Illustration-aymatic-erklaert.png"</span><span class="p">,</span><span class="s2">"PROJECT_facebook-1.png"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"music"</span><span class="p">:</span><span class="s2">"premium/Kaleidoscope by Ethan Rank - Awaken.mp3"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"imagelinks"</span><span class="p">:[</span><span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/09/icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_3_1531505021-300x300.jpg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/07/avatar_user_4_1532249024.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/09/Illustration-aymatic-erklaert.svg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/09/facebook-1.svg"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"logo"</span><span class="p">:</span><span class="s2">"http://localhost:8080/src/uploadedImages/"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"colors"</span><span class="p">:[[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]]]}</span><span class="w">
+  </span><span class="s2">"imagelinks"</span><span class="p">:[</span><span class="s2">"https://www.aymatic.com/data/8/09/icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data/8/09/icon-G_S.4.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data/8/07/avatar_user_3_1531505021-300x300.jpg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data/8/07/avatar_user_4_1532249024.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data/8/09/Illustration-aymatic-erklaert.png"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data/8/09/facebook-1.png"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"logo"</span><span class="p">:</span><span class="s2">"https://www.aymatic.com/data/8/09/Logo.png"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all or one video(s).</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://app.aymatic.com/v1/videos/{videoID}</code></p>
+<p><code>GET https://app.aymatic.com/api/v1/videos/{videoID}</code></p>
 <h3 id='path-parameters'>Path Parameters</h3>
 <table><thead>
 <tr>
@@ -386,7 +403,7 @@ Remember — a happy video is an authenticated video!
 </aside>
 
 <aside class="notice">
-<code>videoID</code> looks something like this: "1cd58e507b3e3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b661d339fba904"
+<code>videoID</code> looks something like this: "654hne3d8bb8a9b2a3a5baa9988f741b8df83fa2e9e6b5576ghj04"
 </aside>
 <h2 id='delete-a-video'>Delete a Video</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/videos/{videoID}"</span>
   -X DELETE
@@ -401,7 +418,7 @@ Remember — a happy video is an authenticated video!
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"videoID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"videoID"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific video.</p>
@@ -422,10 +439,11 @@ Remember — a happy video is an authenticated video!
 <h2 id='update-a-video'>Update a Video</h2><pre class="highlight shell tab-shell"><code>curl -X PUT -H <span class="s2">"Authorization: YOUR_KEY"</span>, <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 --data <span class="s1">'{
   "videoColor": "#3493B1",
-  "music": "premium/Kaleidoscope by Ethan Rank - Awaken.mp3",
-  "theme": "template2",
-  "logo": "https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg",
-  "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"
+  "music": "Song-example-1.mp3",
+  "title":"My second video",
+  "template":"Template-name-1-1",
+  "logo": "https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png",
+  "thumbnail": "https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg"
 }'</span> <span class="se">\</span>
 <span class="s2">"https://app.aymatic.com/api/v1/videos/{videoID}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
@@ -433,10 +451,11 @@ Remember — a happy video is an authenticated video!
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"videoColor"</span><span class="p">:</span> <span class="s2">"#3493B1"</span><span class="p">,</span>
-  <span class="s2">"music"</span><span class="p">:</span> <span class="s2">"premium/Kaleidoscope by Ethan Rank - Awaken.mp3"</span><span class="p">,</span>
-  <span class="s2">"theme"</span><span class="p">:</span> <span class="s2">"template2"</span><span class="p">,</span>
-  <span class="s2">"logo"</span><span class="p">:</span> <span class="s2">"https://www.aymatic.com/wp-content/uploads/2018/05/Aymatic-Logo-new.svg"</span><span class="p">,</span>
-  <span class="s2">"thumbnail"</span><span class="p">:</span> <span class="s2">"https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg/230px-Kitten_in_Rizal_Park%2C_Manila.jpg"</span>
+  <span class="s2">"title"</span><span class="p">:</span><span class="s2">"My second video"</span><span class="p">,</span>
+  <span class="s2">"template"</span><span class="p">:</span><span class="s2">"Template-name-1-1"</span><span class="p">,</span>
+  <span class="s2">"music"</span><span class="p">:</span> <span class="s2">"Song-example-1.mp3"</span><span class="p">,</span>
+  <span class="s2">"logo"</span><span class="p">:</span> <span class="s2">"https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png"</span><span class="p">,</span>
+  <span class="s2">"thumbnail"</span><span class="p">:</span> <span class="s2">"https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg"</span>
 <span class="p">}</span>
 <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">videos</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"videoID"</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
 </code></pre>
@@ -445,7 +464,7 @@ Remember — a happy video is an authenticated video!
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"videoID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"videoID"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a specific video.</p>
@@ -471,42 +490,71 @@ Remember — a happy video is an authenticated video!
 </tr>
 </thead><tbody>
 <tr>
-<td>data</td>
-<td>The json that holds the information needed to update the video.</td>
+<td>videoColor</td>
+<td>The color that the video&#39;s UI should be.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>The name of the video.</td>
+</tr>
+<tr>
+<td>template</td>
+<td>How the video uses the images.</td>
+</tr>
+<tr>
+<td>music</td>
+<td>The song that plays when the video starts.</td>
+</tr>
+<tr>
+<td>logo</td>
+<td>The video&#39;s designated logo. Used for branding.</td>
+</tr>
+<tr>
+<td>thumbnail</td>
+<td>The image that appears when the video hasn&#39;t been played yet.</td>
 </tr>
 </tbody></table>
+
+<p><notice>Anything not added to the body of the request will not be modified. You don&#39;t need to change everything.</notice></p>
 <h2 id='create-a-new-video'>Create a New Video</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Authorization: YOUR_KEY"</span>, <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 --data <span class="s1">'{
-  "theme": "blog",
+  "title": "My new video",
   "template": "template0",
   "videoColor": "#4054B2",
-  "imageSteps": ["https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg","https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg","http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg","https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy","https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"],
-  "textSteps" : ["The world is a dark place.", "My book is sitting next to me.", "Calculators are nifty.", "Shades are open.","Comes enjoy fresh soup.", "Welcome to our website!", "World'</span>s funniest joke.<span class="s2">"]
-}' </span><span class="se">\</span><span class="s2">
-"</span>https://app.aymatic.com/api/v1/videos/<span class="o">{</span>projectKey<span class="o">}</span><span class="s2">"
-</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
+  "music": "Song-example-1.mp3",
+  "logo": "https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png",
+  "thumbnail": "https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg",
+  "imageSteps": ["https://www.aymatic.com/data//7/03/image-1.jpg","https://www.aymatic.com/data//7/03/image-2.jpg","https://www.aymatic.com/data//7/03/image-3.jpg","https://www.aymatic.com/data//7/03/image-4.jpg","https://www.aymatic.com/data//7/03/image-5.jpg"],
+  "textSteps" : [ "My example text 1", "My example text 2", "My example text 3", "My example text 4", "My example text 5", "My example text 6", "My example text 7" ]
+}'</span> <span class="se">\</span>
+<span class="s2">"https://app.aymatic.com/api/v1/videos/{campaignKey}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"theme"</span><span class="p">:</span> <span class="s2">"blog"</span><span class="p">,</span>
+  <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"My new video"</span><span class="p">,</span>
   <span class="s2">"template"</span><span class="p">:</span> <span class="s2">"template0"</span><span class="p">,</span>
   <span class="s2">"videoColor"</span><span class="p">:</span> <span class="s2">"#4054B2"</span><span class="p">,</span>
-  <span class="s2">"imageSteps"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg"</span><span class="p">,</span><span class="s2">"https://www.thesprucepets.com/thmb/810a_HYIb2E8DxkedI6V-3gtkys=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg"</span><span class="p">,</span><span class="s2">"http://images6.fanpop.com/image/photos/41500000/Kitten-cats-and-kittens-club-41536653-1280-853.jpg"</span><span class="p">,</span><span class="s2">"https://www1.cbn.com/sites/default/files/styles/video_ratio_16_9/public/kittenas_hdv.jpg?itok=4nxmYAVy"</span><span class="p">,</span><span class="s2">"https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/kittens-book-list-4-3.jpg"</span><span class="p">],</span>
-  <span class="s2">"textSteps"</span> <span class="p">:</span> <span class="p">[</span><span class="s2">"The world is a dark place."</span><span class="p">,</span> <span class="s2">"My book is sitting next to me."</span><span class="p">,</span> <span class="s2">"Calculators are nifty."</span><span class="p">,</span> <span class="s2">"Shades are open."</span><span class="p">,</span><span class="s2">"Comes enjoy fresh soup."</span><span class="p">,</span> <span class="s2">"Welcome to our website!"</span><span class="p">,</span> <span class="s2">"World's funniest joke."</span><span class="p">]</span>
+  <span class="s2">"music"</span><span class="p">:</span> <span class="s2">"Song-example-1.mp3"</span><span class="p">,</span>
+  <span class="s2">"logo"</span><span class="p">:</span> <span class="s2">"https://www.aymatic.com/data/8/05/Aymatic-Logo-new.png"</span><span class="p">,</span>
+  <span class="s2">"thumbnail"</span><span class="p">:</span> <span class="s2">"https://www.aymatic.com/data/8/05/Aymatic-thumbnail-new.jpeg"</span>
+  <span class="s2">"imageSteps"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"https://www.aymatic.com/data//7/03/image-1.jpg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data//7/03/image-2.jpg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data//7/03/image-3.jpg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data//7/03/image-4.jpg"</span><span class="p">,</span><span class="s2">"https://www.aymatic.com/data//7/03/image-5.jpg"</span><span class="p">],</span>
+  <span class="s2">"textSteps"</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">"My example text 1"</span><span class="p">,</span> <span class="s2">"My example text 2"</span><span class="p">,</span> <span class="s2">"My example text 3"</span><span class="p">,</span> <span class="s2">"My example text 4"</span><span class="p">,</span> <span class="s2">"My example text 5"</span><span class="p">,</span> <span class="s2">"My example text 6"</span><span class="p">,</span> <span class="s2">"My example text 7"</span> <span class="p">]</span>
 <span class="p">}</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">videos</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">"projectKey"</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">videos</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">"campaignKey"</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"videoID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newVideoID"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"projectKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"projectKey"</span><span class="w">
+  </span><span class="s2">"campaignKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaignKey"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new video.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST https://app.aymatic.com/api/v1/videos/{projectKey}</code></p>
+<p><code>POST https://app.aymatic.com/api/v1/videos/{campaignKey}</code></p>
 <h3 id='path-parameters-4'>Path parameters</h3>
 <table><thead>
 <tr>
@@ -515,22 +563,56 @@ Remember — a happy video is an authenticated video!
 </tr>
 </thead><tbody>
 <tr>
-<td>projectKey</td>
-<td>The ID of the project to add the video to.</td>
+<td>campaignKey</td>
+<td>The ID of the campaign to add the video to.</td>
 </tr>
 </tbody></table>
 <h3 id='request-body-parameters-2'>Request body parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>data</td>
-<td>The json that holds the information needed to create the video.</td>
+<td>videoColor</td>
+<td>#4054B2</td>
+<td>The color that the video&#39;s UI should be.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>NECESSARY</td>
+<td>The name of the video.</td>
+</tr>
+<tr>
+<td>template</td>
+<td>NECESSARY</td>
+<td>How the video uses the images.</td>
+</tr>
+<tr>
+<td>music</td>
+<td>AUTO</td>
+<td>The song that plays when the video starts.</td>
+</tr>
+<tr>
+<td>thumbnail</td>
+<td>AUTO</td>
+<td>The image that appears when the video hasn&#39;t been played yet.</td>
+</tr>
+<tr>
+<td>imageSteps</td>
+<td>NECESSARY</td>
+<td>The images that you want the video to use.</td>
+</tr>
+<tr>
+<td>textSteps</td>
+<td>NECESSARY</td>
+<td>The text that you want the video to use.</td>
 </tr>
 </tbody></table>
+
+<aside class="warning">You need to make sure that the textSteps and imageSteps abide by the rules of the template you are using. If the template calls for 5 textSteps you need to give exactly 5 textSteps. Otherwise, it will throw an error.</aside>
 <h2 id='render-a-video'>Render a Video</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"https://app.aymatic.com/api/v1/videos/{videoID}/render"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
 
@@ -563,36 +645,31 @@ Remember — a happy video is an authenticated video!
 <td>The ID of the video to render</td>
 </tr>
 </tbody></table>
-<h1 id='publishing'>Publishing</h1><h2 id='publish-a-video-to-facebook-page'>Publish a Video to Facebook Page</h2>
-<p>curl -X POST -H &quot;Authorization: YOUR_KEY&quot;, &quot;Content-Type: application/json&quot; \
---data &#39;{
-  &quot;fbPageID&quot;: &quot;YOUR_FACEBOOK_PAGE_ID&quot;,
-  &quot;fbUserId&quot;: &quot;YOUR_FACEBOOK_USER_ID&quot;,
-  &quot;pageToken&quot;: &quot;YOUR_FACEBOOK_PAGE_TOKEN&quot;
-}&#39; \
-&quot;https://app.aymatic.com/api/v1/videos/{videoID}/publishFB&quot;
-```</p>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
+<h1 id='publishing'>Publishing</h1><h2 id='publish-a-video-to-facebook'>Publish a Video to Facebook</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Authorization: YOUR_KEY"</span> <span class="s2">"https://app.aymatic.com/api/v1/videos/{videoID}/publish/facebook"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"fbPageID"</span><span class="p">:</span> <span class="s2">"YOUR_FACEBOOK_PAGE_ID"</span><span class="p">,</span>
-  <span class="s2">"fbUserId"</span><span class="p">:</span> <span class="s2">"YOUR_FACEBOOK_USER_ID"</span><span class="p">,</span>
-  <span class="s2">"pageToken"</span><span class="p">:</span> <span class="s2">"YOUR_FACEBOOK_PAGE_TOKEN"</span>
-<span class="p">};</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">videos</span><span class="p">.</span><span class="nx">publishFB</span><span class="p">(</span><span class="s2">"videoID"</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">videos</span><span class="p">.</span><span class="nx">publish</span><span class="p">.</span><span class="nx">facebook</span><span class="p">(</span><span class="s2">"videoID"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"videoID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"videoID"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"postID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postID"</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"postData"</span><span class="p">:{</span><span class="w">
+
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint publishes a video.</p>
+<p>This endpoint publishes a video to facebook.</p>
+
+<p><notice>Post data will just be whatever your provider sends back after posting.</notice></p>
+
+<aside class="warning">You need to be authorized and logged in before making any publications. Please log in for your provider on our website.</aside>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>POST https://app.aymatic.com/api/v1/videos/{videoID}/publishFB</code></p>
+<p><code>POST https://app.aymatic.com/api/v1/videos/{videoID}/publish/facebook</code></p>
 <h3 id='path-parameters-6'>Path parameters</h3>
 <table><thead>
 <tr>
@@ -605,7 +682,32 @@ Remember — a happy video is an authenticated video!
 <td>The ID of the video to publish</td>
 </tr>
 </tbody></table>
-<h3 id='request-body-parameters-3'>Request body parameters</h3>
+<h2 id='publish-a-video-to-youtube'>Publish a Video to Youtube</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Authorization: YOUR_KEY"</span> <span class="s2">"https://app.aymatic.com/api/v1/videos/{videoID}/publish/youtube"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">videos</span><span class="p">.</span><span class="nx">publish</span><span class="p">.</span><span class="nx">youtube</span><span class="p">(</span><span class="s2">"videoID"</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"videoID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"videoID"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"postData"</span><span class="p">:{</span><span class="w">
+
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint publishes a video to youtube.</p>
+
+<p><notice>Post data will just be whatever your provider sends back after posting.</notice></p>
+
+<aside class="warning">You need to be authorized and logged in before making any publications. Please log in for your provider on our website.</aside>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST https://app.aymatic.com/api/v1/videos/{videoID}/publish/youtube</code></p>
+<h3 id='path-parameters-7'>Path parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -613,11 +715,11 @@ Remember — a happy video is an authenticated video!
 </tr>
 </thead><tbody>
 <tr>
-<td>data</td>
-<td>The json that holds the information needed to create the video.</td>
+<td>videoID</td>
+<td>The ID of the video to publish</td>
 </tr>
 </tbody></table>
-<h1 id='campaigns'>Campaigns</h1><h2 id='get-all-or-one-campaign-s'>Get All or One Campaign(s)</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/campaigns?campaignKey"</span>
+<h1 id='campaigns'>Campaigns</h1><h2 id='get-all-or-one-campaign-s'>Get All or One Campaign(s)</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/campaigns/{campaignKey}"</span>
   -H <span class="s2">"Authorization: YOUR_KEY"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
 
@@ -628,24 +730,20 @@ Remember — a happy video is an authenticated video!
 <p>The above command returns JSON structured like this if the campaignKey was defined as &quot;61239a2b7877197e107b4a0ceb053288d77b9a243e57a46d66478d6bedd4b366&quot;:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"facebook"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"pageID"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"instagram"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"youtube"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"platforms"</span><span class="p">:[</span><span class="s2">"youtube"</span><span class="p">,</span><span class="s2">"facebook"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"videos"</span><span class="p">:[</span><span class="s2">"9988f741b8df8339fba9041cd58e507b3e3d8bb8a9b2a3a5baafa2e9e6b661d3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"7b3e3d8bb8a9b2a9988f741b8df8339fba9041cd58e503a5baafa2e9e6b661d3"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"hasPushed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"61239a2b7877197e107b4a0ceb053288d77b9a243e57a46d66478d6bedd4b366"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"playerControls"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"projects"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"FBdata"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"pageID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pageName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"postID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"image"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"templateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardealer-1-1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Project 1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"videoUUID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"views"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Campaign 9"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"blog"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"videoColor"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#ffffff"</span><span class="p">,</span><span class="w">
@@ -657,9 +755,9 @@ Remember — a happy video is an authenticated video!
 <p><notice>If campaignKey is not defined, the result will be all your campaigns.</notice></p>
 
 <p>This endpoint retrieves all or one campaign(s).</p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://app.aymatic.com/v1/campaigns/{campaignKey}</code></p>
-<h3 id='path-parameters-7'>Path Parameters</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://app.aymatic.com/api/v1/campaigns/{campaignKey}</code></p>
+<h3 id='path-parameters-8'>Path Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -688,13 +786,13 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"campaignKey"</span><span class="p">:</span><span class="w"> </span><span class="err">campaignKey</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific campaign.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>DELETE https://app.aymatic.com/api/v1/campaigns/{campaignKey}</code></p>
-<h3 id='path-parameters-8'>Path Parameters</h3>
+<h3 id='path-parameters-9'>Path Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -708,24 +806,44 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
 </tbody></table>
 <h2 id='update-a-campaign'>Update a Campaign</h2><pre class="highlight shell tab-shell"><code>curl -X PUT -H <span class="s2">"Authorization: "</span>YOUR_KEY<span class="s2">", "</span>Content-Type: application/json<span class="s2">" </span><span class="se">\</span><span class="s2">
 --data '{
+  "</span>facebook<span class="s2">":{
+    "</span>pageID<span class="s2">":""
+  }
+  "</span>instagram<span class="s2">":{
+    ...
+  }
+  "</span>youtube<span class="s2">":{
+    ...
+  }
   "</span>title<span class="s2">": "</span>This is a new wacky title!<span class="s2">",
   "</span>playerControls<span class="s2">": [false,false,false,true,false,true],
   "</span>videoColor<span class="s2">": "</span><span class="c">#72D85E",</span>
-  <span class="s2">"videoIcon"</span>: <span class="s2">""</span>,
-  <span class="s2">"videoPlayend"</span>: <span class="s2">"3000"</span>,
-  <span class="s2">"videoPlaystart"</span>: <span class="s2">"1000"</span>
+  <span class="s2">"videoLogo"</span>: <span class="s2">""</span>,
+  <span class="s2">"platforms"</span>:[<span class="s2">"facebook"</span><span class="o">]</span>,
+  <span class="s2">"url"</span>: <span class="s2">"https://www.aymatic.com/"</span>,
+  <span class="s2">"templates"</span>: <span class="o">[</span><span class="s2">"template0"</span>,<span class="s2">"template1"</span>,<span class="s2">"template2"</span><span class="o">]</span>
 <span class="o">}</span><span class="s1">' \
 "https://app.aymatic.com/api/v1/campaigns/{campaignKey}"
 </span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"facebook"</span><span class="p">:{</span>
+    <span class="s2">"pageID"</span><span class="p">:</span><span class="s2">""</span>
+  <span class="p">}</span>
+  <span class="s2">"instagram"</span><span class="p">:{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+  <span class="s2">"youtube"</span><span class="p">:{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
   <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"This is a new wacky title!"</span><span class="p">,</span>
   <span class="s2">"playerControls"</span><span class="p">:</span> <span class="p">[</span><span class="kc">false</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="kc">true</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="kc">true</span><span class="p">],</span>
   <span class="s2">"videoColor"</span><span class="p">:</span> <span class="s2">"#72D85E"</span><span class="p">,</span>
-  <span class="s2">"videoIcon"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"videoPlayend"</span><span class="p">:</span> <span class="s2">"3000"</span><span class="p">,</span>
-  <span class="s2">"videoPlaystart"</span><span class="p">:</span> <span class="s2">"1000"</span>
+  <span class="s2">"videoLogo"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="s2">"platforms"</span><span class="p">:[</span><span class="s2">"facebook"</span><span class="p">],</span>
+  <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"https://www.aymatic.com/"</span><span class="p">,</span>
+  <span class="s2">"templates"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"template0"</span><span class="p">,</span><span class="s2">"template1"</span><span class="p">,</span><span class="s2">"template2"</span><span class="p">]</span>
 <span class="p">}</span>
 <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">campaigns</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"campaignKey"</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
 </code></pre>
@@ -734,13 +852,13 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"campaignKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaignKey"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a specific campaign.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>PUT https://app.aymatic.com/api/v1/campaigns/{campaignKey}</code></p>
-<h3 id='path-parameters-9'>Path Parameters</h3>
+<h3 id='path-parameters-10'>Path Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -752,7 +870,7 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
 <td>The ID of the Campaign to delete</td>
 </tr>
 </tbody></table>
-<h3 id='request-body-parameters-4'>Request body parameters</h3>
+<h3 id='request-body-parameters-3'>Request body parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -760,8 +878,44 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
 </tr>
 </thead><tbody>
 <tr>
-<td>data</td>
-<td>The json that holds the information needed to update the campaign.</td>
+<td>videoColor</td>
+<td>The color that the video&#39;s UI should be.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>The name of the video.</td>
+</tr>
+<tr>
+<td>facebook</td>
+<td>The data that is required to know what page you want your videos published to in facebook.</td>
+</tr>
+<tr>
+<td>youtube</td>
+<td>The data that is required to know where you want your videos published to in youtube.</td>
+</tr>
+<tr>
+<td>instagram</td>
+<td>The data that is required to know where you want you videos published to in instragram.</td>
+</tr>
+<tr>
+<td>platforms</td>
+<td>The platforms that you want your videos to automatically be posted to.</td>
+</tr>
+<tr>
+<td>playerControls</td>
+<td>The controls the video should have.</td>
+</tr>
+<tr>
+<td>templates</td>
+<td>List of ways that the videos should use the images.</td>
+</tr>
+<tr>
+<td>url</td>
+<td>The url of your website.</td>
+</tr>
+<tr>
+<td>videoLogo</td>
+<td>The logo used for branding on the video.</td>
 </tr>
 </tbody></table>
 <h2 id='create-a-new-campaign'>Create a New Campaign</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Authorization: "</span>YOUR_KEY<span class="s2">", "</span>Content-Type: application/json<span class="s2">" </span><span class="se">\</span><span class="s2">
@@ -771,9 +925,9 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
   "</span>title<span class="s2">": "</span>This is a new wacky title!<span class="s2">",
   "</span>playerControls<span class="s2">": [false,false,false,true,false,true],
   "</span>videoColor<span class="s2">": "</span><span class="c">#72D85E",</span>
-  <span class="s2">"videoIcon"</span>: <span class="s2">""</span>,
-  <span class="s2">"videoPlayend"</span>: <span class="s2">"3000"</span>,
-  <span class="s2">"videoPlaystart"</span>: <span class="s2">"1000"</span>
+  <span class="s2">"videoLogo"</span>: <span class="s2">""</span>,
+  <span class="s2">"url"</span>: <span class="s2">"https://www.aymatic.com/"</span>,
+  <span class="s2">"templates"</span>: <span class="o">[</span><span class="s2">"template0"</span>,<span class="s2">"template1"</span>,<span class="s2">"template2"</span><span class="o">]</span>
 <span class="o">}</span>
 <span class="o">}</span><span class="s1">' \
 "https://app.aymatic.com/api/v1/campaigns"
@@ -785,9 +939,9 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
   <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"This is a wacky title!"</span><span class="p">,</span>
   <span class="s2">"playerControls"</span><span class="p">:</span> <span class="p">[</span><span class="kc">false</span><span class="p">,</span><span class="kc">true</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="kc">true</span><span class="p">],</span>
   <span class="s2">"videoColor"</span><span class="p">:</span> <span class="s2">"#ffe25E"</span><span class="p">,</span>
-  <span class="s2">"videoIcon"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="s2">"videoPlayend"</span><span class="p">:</span> <span class="s2">"5000"</span><span class="p">,</span>
-  <span class="s2">"videoPlaystart"</span><span class="p">:</span> <span class="s2">"2000"</span>
+  <span class="s2">"videoLogo"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"https://www.aymatic.com/"</span><span class="p">,</span>
+  <span class="s2">"templates"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"template0"</span><span class="p">,</span><span class="s2">"template1"</span><span class="p">,</span><span class="s2">"template2"</span><span class="p">]</span>
 <span class="p">}</span>
 <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">campains</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 </code></pre>
@@ -795,215 +949,64 @@ campaignKey looks something like this: "c5b4d78dc7f768afacbd288a621d9aab78d7b56f
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"campaignKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newCampaignKey"</span><span class="w">
+  </span><span class="s2">"campaignKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newCampaignKey"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"successful"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new campaign.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
-<p><code>POST https://app.aymatic.com/api/v1/campaigns</code></p>
-<h3 id='request-body-parameters-5'>Request body parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>The json that holds the information needed to create the campaign.</td>
-</tr>
-</tbody></table>
-<h1 id='projects'>Projects</h1><h2 id='get-all-or-one-project-s'>Get All or One Project(s)</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/projects/{projectKey}"</span>
-  -H <span class="s2">"Authorization: YOUR_KEY"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">projects</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">projects</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"projectKey"</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this if a project is specified:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"FBdata"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"pageID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pageName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"postID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"image"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"40496491030915177d818cb154b3e445faa77ac3989b94e1d6527591f92be846"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"templateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardealer-1-1"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Project 1"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"videoUUID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"views"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all or one project(s).</p>
 <h3 id='http-request-11'>HTTP Request</h3>
-<p><code>GET https://app.aymatic.com/v1/projects/{projectKey}</code></p>
-<h3 id='path-parameters-10'>Path Parameters</h3>
+<p><code>POST https://app.aymatic.com/api/v1/campaigns</code></p>
+<h3 id='request-body-parameters-4'>Request body parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>projectKey</td>
-<td>If defined, the result will be the data from that specific project. Otherwise, the result will be all projects you own.</td>
+<td>type</td>
+<td>NECESSARY</td>
+<td>What kind of video is this? blog, product, or email?</td>
+</tr>
+<tr>
+<td>videoColor</td>
+<td>#4054B2</td>
+<td>The color that the video&#39;s UI should be.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>NECESSARY</td>
+<td>The name of the video.</td>
+</tr>
+<tr>
+<td>playerControls</td>
+<td>AUTO</td>
+<td>The controls the video should have.</td>
+</tr>
+<tr>
+<td>templates</td>
+<td>NECESSARY</td>
+<td>List of ways that the videos should use the images.</td>
+</tr>
+<tr>
+<td>url</td>
+<td>NECESSARY</td>
+<td>The url of your website.</td>
+</tr>
+<tr>
+<td>videoLogo</td>
+<td>AUTO</td>
+<td>The logo used for branding on the video.</td>
 </tr>
 </tbody></table>
-
-<aside class="notice">
-projectKey looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae905247d46829a84151ca4f20d6e"
-</aside>
-<h2 id='delete-a-project'>Delete a Project</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/projects/{projectKey}"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: YOUR_KEY"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">projects</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">projectKey</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"projectKey"</span><span class="p">:</span><span class="w"> </span><span class="err">projectKey</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific project.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
-<p><code>DELETE https://app.aymatic.com/api/v1/projects/{projectKey}</code></p>
-<h3 id='path-parameters-11'>Path Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>projectKey</td>
-<td>The ID of the project to delete</td>
-</tr>
-</tbody></table>
-<h2 id='update-a-project'>Update a Project</h2><pre class="highlight shell tab-shell"><code>curl -X PUT -H <span class="s2">"Authorization: "</span>YOUR_KEY<span class="s2">", "</span>Content-Type: application/json<span class="s2">" </span><span class="se">\</span><span class="s2">
---data '{
-  "</span>image<span class="s2">" : "</span>https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg<span class="s2">",
-  "</span>templateName<span class="s2">" : "</span>Cardealer-1-1<span class="s2">",
-  "</span>title<span class="s2">" : "</span>Project 1<span class="s2">",
-  "</span>videoUUID<span class="s2">" : "</span>d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5<span class="s2">"
-}' </span><span class="se">\</span><span class="s2">
-"</span>https://app.aymatic.com/api/v1/projects/<span class="o">{</span>projectKey<span class="o">}</span><span class="s2">"
-</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"image"</span> <span class="p">:</span> <span class="s2">"https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg"</span><span class="p">,</span>
-  <span class="s2">"templateName"</span> <span class="p">:</span> <span class="s2">"Cardealer-1-1"</span><span class="p">,</span>
-  <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Project 1"</span><span class="p">,</span>
-  <span class="s2">"videoUUID"</span> <span class="p">:</span> <span class="s2">"d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">projects</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"projectKey"</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"projectKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"projectKey"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint updates a specific project.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
-<p><code>PUT https://app.aymatic.com/api/v1/projects/{projectKey}</code></p>
-<h3 id='path-parameters-12'>Path Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>projectKey</td>
-<td>The ID of the project to delete</td>
-</tr>
-</tbody></table>
-<h3 id='request-body-parameters-6'>Request body parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>The json that holds the information needed to update the project.</td>
-</tr>
-</tbody></table>
-<h2 id='create-a-new-project'>Create a New Project</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Authorization: "</span>YOUR_KEY<span class="s2">", "</span>Content-Type: application/json<span class="s2">" </span><span class="se">\</span><span class="s2">
---data '{
-  "</span>image<span class="s2">" : "</span>https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg<span class="s2">",
-  "</span>templateName<span class="s2">" : "</span>Cardealer-1-1<span class="s2">",
-  "</span>title<span class="s2">" : "</span>Project 1<span class="s2">",
-  "</span>videoUUID<span class="s2">" : "</span>d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5<span class="s2">"
-}' </span><span class="se">\</span><span class="s2">
-"</span>https://app.aymatic.com/api/v1/projects/<span class="o">{</span>campaignKey<span class="o">}</span><span class="s2">"
-</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"image"</span> <span class="p">:</span> <span class="s2">"https://s3.eu-central-1.amazonaws.com/private-content.aymatic.com/src/videos/d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5/0c6c9df068da71c9fb1e200ca2309db83ce1bd4117cfdd1fd24f9327335d446d.jpeg"</span><span class="p">,</span>
-  <span class="s2">"templateName"</span> <span class="p">:</span> <span class="s2">"Cardealer-1-1"</span><span class="p">,</span>
-  <span class="s2">"title"</span> <span class="p">:</span> <span class="s2">"Project 1"</span><span class="p">,</span>
-  <span class="s2">"videoUUID"</span> <span class="p">:</span> <span class="s2">"d9779427515e143e44b594cb7335b3f4e324bedeabe85c1fe31bea94cdc7c5d5"</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">projects</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">"campaignKey"</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"projectKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newProjectKey"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint creates a new project.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
-<p><code>POST https://app.aymatic.com/api/v1/projects/{campaignKey}</code></p>
-<h3 id='query-parameters'>Query parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>campaignKey</td>
-<td>The ID of the campaign at which the project should be created in.</td>
-</tr>
-</tbody></table>
-<h3 id='request-body-parameters-7'>Request body parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>The json that holds the information needed to create the project.</td>
-</tr>
-</tbody></table>
-<h1 id='templates'>Templates</h1><h2 id='get-templates'>Get Templates</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/templates/{theme}"</span>
+<h1 id='templates-and-music'>Templates and Music</h1><h2 id='get-templates'>Get Templates</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/templates/{type}"</span>
   -X GET
   -H <span class="s2">"Authorization: YOUR_KEY"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">templates</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"theme"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">templates</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"type"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this if theme is defined to be &quot;blog&quot;:</p>
@@ -1011,24 +1014,24 @@ projectKey looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae9052
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 
   </span><span class="s2">"template2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Aymatic's handgefertigte Fahrzeug Video-Vorlage"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Aymatic's Video-Vorlage"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"imageSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Auto vorne"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto hinten"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto Reifen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto innen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto detail 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto vorne"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Logo oder Mitarbeiter"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"imageSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Image-Step 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 7"</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"isCustom"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"isPremium"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Vorlage Auto Günther"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"textSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Auto Name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Fahrzeugtyp"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Getriebe"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Motor"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Verbrauch"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Preis"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Kontakt"</span><span class="w"> </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardealer-1-1"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Template-name 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"textSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Text-Step 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 7"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Template-name-1-1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"template3"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Aymatics's </span><span class="se">\"</span><span class="s2">Steinhart und Kraus</span><span class="se">\"</span><span class="s2">-Vorlage"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Aymatics's </span><span class="se">\"</span><span class="s2">Test</span><span class="se">\"</span><span class="s2">-Template"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"imageSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Auto vorne"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto hinten"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto innen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto innen detail 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto innen detail 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Auto seitlich"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"imageSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Image-Step 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Image-Step 7"</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"isCustom"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"isPremium"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Vorlage S&amp;K Autohaus"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"textSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Auto Name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Fahrzeugtyp"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Getriebe"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Motor"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Verbrauch (ohne L/100)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Preis"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Kontakt"</span><span class="w"> </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardealer-2-3"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Template-name 3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"textSteps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Text-Step 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Text-Step 7"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Template-name-2-3"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
 
@@ -1039,20 +1042,27 @@ projectKey looks something like this: "1f4ec1ba91f1bdca16e39409c7849dbe25fae9052
 
 <p><notice>Notice how only the templates that are not premium get returned.
 This user does not have premium status and therefore is not allowed to view the premium templates.</notice></p>
-<h3 id='http-request-15'>HTTP Request</h3>
-<p><code>GET https://app.aymatic.com/api/v1/templates/{theme}</code></p>
-<h3 id='path-parameters-13'>Path Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>theme</td>
-<td>The type of templates you want. Blog, Email, or Product. If not defined, the result will be all of them.</td>
-</tr>
-</tbody></table>
+<h2 id='get-music'>Get Music</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/music"</span>
+  -X GET
+  -H <span class="s2">"Authorization: YOUR_KEY"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">aymatic</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'YOUR_KEY'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">music</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"premium"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Song-example-1.mp3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Song-example-2.mp3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Song-example-3.mp3"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"standard"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Song-example-4.mp3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Song-example-5.mp3"</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns the music that you can use.</p>
+
+<p><notice>This is a premium user. He is allowed to see the premium songs.</notice></p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET https://app.aymatic.com/api/v1/music</code></p>
 <h1 id='insights'>Insights</h1><h2 id='get-video-insights'>Get Video Insights</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.aymatic.com/api/v1/insights/{videoID}"</span>
   -H <span class="s2">"Authorization: YOUR_KEY"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">aymatic</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aymatic'</span><span class="p">);</span>
@@ -1065,13 +1075,14 @@ This user does not have premium status and therefore is not allowed to view the 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"views"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"likes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="s2">"likes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"plays"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves insights about a specific video.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
-<p><code>GET https://app.aymatic.com/v1/insights/{videoID}</code></p>
-<h3 id='path-parameters-14'>Path Parameters</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET https://app.aymatic.com/api/v1/insights/{videoID}</code></p>
+<h3 id='path-parameters-11'>Path Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1137,8 +1148,16 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>Too Many Requests -- You&#39;re calling too many methods! Slow down!</td>
 </tr>
 <tr>
+<td>440</td>
+<td>Lacking Provider Credentials -- You need to authorize with that provider on our website before using that it.</td>
+</tr>
+<tr>
+<td>454</td>
+<td>Incorrect arguements -- The arguements given were not what the method wanted. Please double check what you gave.</td>
+</tr>
+<tr>
 <td>500</td>
-<td>Internal Server Error -- Someone&#39;s getting fired. We had a problem with our server. Try again later.</td>
+<td>Internal Server Error -- Someone&#39;s getting fired. We had a problem with our server! Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
