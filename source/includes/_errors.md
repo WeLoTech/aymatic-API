@@ -19,7 +19,7 @@ Error Code | Meaning
 418 | Lacking permissions -- You do not have proper permissions to use this method.
 420 | Not Yours -- The media you are trying to access is not yours.
 429 | Too Many Requests -- You're calling too many methods! Slow down!
-440 | Lacking Provider Credentials -- You need to authorize before using that provider.
+440 | Lacking Provider Credentials -- You need to authorize with that provider on our website before using that it.
 454 | Incorrect arguements -- The arguements given were not what the method wanted. Please double check what you gave.
 500 | Internal Server Error -- Someone's getting fired. We had a problem with our server! Try again later. 
 503 | Service Unavailable -- Shhh, we're closed. Server is temporarily offline for maintenance. Please try again later.
